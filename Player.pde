@@ -29,6 +29,7 @@ class Player extends GameObject
     this.button2 = button2;
     w = 30;
     h = 30;
+    theta = 0;
   }
   
   Player(int index, color colour, XML xml)
@@ -44,25 +45,30 @@ class Player extends GameObject
         );
     w = 30;
     h = 30;
+    theta = 0;
   }
   
   void update()
   {
+    forward.x = sin(theta);
+    forward.y = -cos(theta);
+    
+    
     if (checkKey(up))
     {
-      pos.y -= 1;
+      pos.add(forward);
     }
     if (checkKey(down))
     {
-      pos.y += 1;
+      //pos.y += 1;
     }
     if (checkKey(left))
     {
-      pos.x -= 1;
+      theta -= 0.1f;
     }    
     if (checkKey(right))
     {
-      pos.x += 1;
+      theta += 0.1f;
     }
     if (checkKey(start))
     {
@@ -82,7 +88,7 @@ class Player extends GameObject
   {    
     pushMatrix();
     translate(pos.x, pos.y);
-    rotate(theata);
+    rotate(theta);
     
     stroke(colour);
     float halfWidth = w / 3;
