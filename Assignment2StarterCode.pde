@@ -1,10 +1,10 @@
 /*
     DIT OOP Assignment 2 Starter Code
-    =================================
-    
-    Loads player properties from an xml file
-    See: https://github.com/skooter500/DT228-OOP 
-*/
+ =================================
+ 
+ Loads player properties from an xml file
+ See: https://github.com/skooter500/DT228-OOP 
+ */
 
 ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
@@ -17,8 +17,8 @@ void setup()
 
 void draw()
 {
-  background(255);
-  for(Player player:players)
+  background(0);
+  for (Player player : players)
   {
     player.update();
     player.display();
@@ -60,7 +60,7 @@ char buttonNameToKey(XML xml, String buttonName)
     return DOWN;
   }
   //.. Others to follow
-  return value.charAt(0);  
+  return value.charAt(0);
 }
 
 void setUpPlayerControllers()
@@ -68,17 +68,15 @@ void setUpPlayerControllers()
   XML xml = loadXML("arcade.xml");
   XML[] children = xml.getChildren("player");
   int gap = width / (children.length + 1);
-  
-  for(int i = 0 ; i < children.length ; i ++)  
+
+  for (int i = 0; i < children.length; i ++)  
   {
     XML playerXML = children[i];
-    Player p = new Player(
-            i
-            , color(random(0, 255), random(0, 255), random(0, 255))
-            , playerXML);
+    Player p = new Player(i, color(random(0, 255), random(0, 255), random(0, 255)), playerXML);
     int x = (i + 1) * gap;
     p.pos.x = x;
     p.pos.y = 300;
-   players.add(p);         
+    players.add(p);
   }
 }
+

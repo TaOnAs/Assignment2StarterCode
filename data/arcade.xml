@@ -9,7 +9,7 @@
 		<button1>e</button1>
 		<button2>r</button2>
 	</player>
-	<player>
+	<bullet>
 		<up>i</up>
 		<down>k</down>
 		<left>j</left>
@@ -18,5 +18,5 @@
 		<insertcoin>5</insertcoin>
 		<button1>p</button1>
 		<button2>[</button2>
-	</player>
+	</bullet>
 </arcade>	

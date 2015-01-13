@@ -1,6 +1,5 @@
-class Player
+class Player extends GameObject
 {
-  PVector pos;
   char up;
   char down;
   char left;
@@ -9,8 +8,8 @@ class Player
   char button1;
   char button2;
   int index;
-  color colour;
-    
+  float w, h;
+      
   Player()
   {
     pos = new PVector(width / 2, height / 2);
@@ -28,12 +27,13 @@ class Player
     this.start = start;
     this.button1 = button1;
     this.button2 = button2;
+    w = 30;
+    h = 30;
   }
   
   Player(int index, color colour, XML xml)
   {
-    this(index
-        , colour
+    this(index, colour
         , buttonNameToKey(xml, "up")
         , buttonNameToKey(xml, "down")
         , buttonNameToKey(xml, "left")
@@ -42,6 +42,8 @@ class Player
         , buttonNameToKey(xml, "button1")
         , buttonNameToKey(xml, "button2")
         );
+    w = 30;
+    h = 30;
   }
   
   void update()
@@ -78,8 +80,19 @@ class Player
   
   void display()
   {    
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(theata);
+    
     stroke(colour);
-    fill(colour);    
-    rect(pos.x, pos.y, 20, 20);
+    float halfWidth = w / 3;
+    float  halfHeight = h / 2;    
+    
+    line(-halfWidth, halfHeight, 0, - halfHeight);
+    line(0, - halfHeight, halfWidth, halfHeight);
+    line(-halfWidth + 4, + halfHeight - 6, halfWidth - 4, halfHeight - 6);
+    
+    
+    popMatrix();
   }  
 }
