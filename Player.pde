@@ -9,6 +9,8 @@ class Player extends GameObject
   char button2;
   int index;
   float w, h;
+  float fireRate = 10.0f;
+  float toPass = 1.0f / fireRate;
       
   Player()
   {
@@ -76,7 +78,16 @@ class Player extends GameObject
     }
     if (checkKey(button1))
     {
-      println("Player " + index + " button 1");
+      println(born);
+      println(toPass);
+      if (born < toPass)
+      {
+        Bullet bullet = new Bullet();
+        bullet.pos = pos.get();
+        bullet.theta = theta;
+        objects.add(bullet);
+        born = 0.0f;
+      }
     }
     if (checkKey(button2))
     {

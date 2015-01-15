@@ -6,7 +6,7 @@
  See: https://github.com/skooter500/DT228-OOP 
  */
 
-ArrayList<Player> players = new ArrayList<Player>();
+ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
 
 void setup()
@@ -18,10 +18,15 @@ void setup()
 void draw()
 {
   background(0);
-  for (Player player : players)
+  for (int i = 0; i < objects.size(); i++)
   {
-    player.update();
-    player.display();
+    objects.get(i).update();
+    objects.get(i).display();
+    
+    if( ! objects.get(i).alive)
+    {
+      objects.remove(i);
+    }
   }
 }
 
@@ -76,7 +81,7 @@ void setUpPlayerControllers()
     int x = (i + 1) * gap;
     p.pos.x = x;
     p.pos.y = 300;
-    players.add(p);
+    objects.add(p);
   }
 }
 
