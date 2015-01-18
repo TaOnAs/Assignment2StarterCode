@@ -6,7 +6,6 @@ class GameObject
    float theta;
    float speed;
    boolean alive;
-   float tAlive = 5.0f;
    float born = 0.0f;
    float timeDelta = 1.0f /60.0f;
 

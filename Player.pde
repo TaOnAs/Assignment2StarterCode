@@ -11,7 +11,6 @@ class Player extends GameObject
   float w, h;
   float fireRate = 10.0f;
   float toPass = 1.0f / fireRate;
-  PVector LastForward;
       
   Player()
   {
@@ -59,11 +58,14 @@ class Player extends GameObject
     
     if (checkKey(up))
     {
-      speed = 10.0f;
-      LastForward = forward;
+      if(speed < 10)
+      {
+        speed = speed + 0.15;
+      }
       PVector velocity = PVector.mult(forward, speed);
       pos.add(velocity);
       //pos.add(forward);
+      
     }
     else
     {

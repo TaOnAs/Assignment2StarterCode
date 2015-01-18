@@ -1,6 +1,6 @@
 class Bullet extends GameObject
 {
- 
+  float tAlive = 100.0f;
   
   Bullet()
   {
@@ -16,7 +16,7 @@ class Bullet extends GameObject
     }
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    speed = 10.0f;
+    speed = 22.0f;
     
     PVector velocity = PVector.mult(forward, speed);
     pos.add(velocity);
