@@ -13,8 +13,9 @@ class GameObject
   GameObject()
   {
     alive = true;
-    pos = new PVector(width / 2, height / 2);
     forward = new PVector(0, -1);
+    pos = new PVector(width / 2, height / 2);
+    
   }
  
  void update()

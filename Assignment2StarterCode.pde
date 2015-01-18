@@ -11,8 +11,12 @@ boolean[] keys = new boolean[526];
 
 void setup()
 {
-  size(500, 500);
+  size(displayWidth, displayHeight);
   setUpPlayerControllers();
+}
+
+boolean sketchFullScreen() {
+  return true;
 }
 
 void draw()

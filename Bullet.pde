@@ -19,7 +19,7 @@ class Bullet extends GameObject
     speed = 10.0f;
     
     PVector velocity = PVector.mult(forward, speed);
-    pos.add(forward);
+    pos.add(velocity);
   }
   
   void display()
