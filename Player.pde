@@ -132,8 +132,21 @@ class Player extends GameObject
     line(-halfWidth, halfHeight, 0, - halfHeight);
     line(0, - halfHeight, halfWidth, halfHeight);
     line(-halfWidth + 4, + halfHeight - 6, halfWidth - 4, halfHeight - 6);
-    
-    
     popMatrix();
+    
+    if (pos.x > width)
+    {
+      pos.x = 0;
+    } else if (pos.x < 0)
+    {
+      pos.x = width;
+    }
+    if (pos.y > height)
+    {
+      pos.y = 0;
+    } else if ( pos.y < 0)
+    {
+      pos.y = height;
+    }
   }  
 }
