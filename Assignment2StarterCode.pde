@@ -7,8 +7,13 @@ void setup()
 {
   size(displayWidth, displayHeight);
   setUpPlayerControllers();
-  
-  objects.add(asteroid);
+
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
 }
 
 Asteroid asteroid = new Asteroid();
@@ -21,12 +26,12 @@ boolean sketchFullScreen() {
 void draw()
 {
   background(0);
-  for (int i = 0; i < objects.size(); i++)
+  for (int i = 0; i < objects.size (); i++)
   {
     objects.get(i).update();
     objects.get(i).display();
-    
-    if( ! objects.get(i).alive)
+
+    if ( ! objects.get(i).alive)
     {
       objects.remove(i);
     }

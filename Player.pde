@@ -98,8 +98,7 @@ class Player extends GameObject
     }
     if (checkKey(button1))
     {
-      println(born);
-      println(toPass);
+
       if (born < toPass)
       {
         Bullet bullet = new Bullet();
