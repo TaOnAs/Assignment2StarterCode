@@ -1,10 +1,10 @@
 class Bullet extends GameObject
 {
-  float tAlive = 100.0f;
+  float tAlive = 1.0f;
   
   Bullet()
   {
-    
+
   }
   
   void update()
@@ -29,5 +29,22 @@ class Bullet extends GameObject
     rotate(theta);
     line(0, -2, 0, 2); 
     popMatrix();
+    
+    
+    if (pos.x > width)
+    {
+      pos.x = 0;
+    } else if (pos.x < 0)
+    {
+      pos.x = width;
+    }
+    if (pos.y > height)
+    {
+      pos.y = 0;
+    } else if ( pos.y < 0)
+    {
+      pos.y = height;
+    }
+    
   }
 }

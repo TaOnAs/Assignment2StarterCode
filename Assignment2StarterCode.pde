@@ -1,10 +1,4 @@
-/*
-    DIT OOP Assignment 2 Starter Code
- =================================
- 
- Loads player properties from an xml file
- See: https://github.com/skooter500/DT228-OOP 
- */
+
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
@@ -81,7 +75,7 @@ void setUpPlayerControllers()
   for (int i = 0; i < children.length; i ++)  
   {
     XML playerXML = children[i];
-    Player p = new Player(i, color(random(0, 255), random(0, 255), random(0, 255)), playerXML);
+    Player p = new Player(i, color((255)), playerXML);
     int x = (i + 1) * gap;
     p.pos.x = x;
     p.pos.y = 300;
