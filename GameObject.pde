@@ -3,12 +3,13 @@ class GameObject
    PVector pos;
    PVector forward;
    color colour;
+   float w, h;
    float theta;
    float speed;
-   boolean alive;
    float born = 0.0f;
    float timeDelta = 1.0f /60.0f;
-
+   boolean alive;
+   
   GameObject()
   {
     alive = true;

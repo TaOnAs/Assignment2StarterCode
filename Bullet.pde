@@ -30,7 +30,7 @@ class Bullet extends GameObject
     line(0, -2, 0, 2); 
     popMatrix();
     
-    
+    //keeps bullets on the screen
     if (pos.x > width)
     {
       pos.x = 0;

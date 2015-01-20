@@ -8,13 +8,11 @@ class Player extends GameObject
   char button1;
   char button2;
   int index;
-  float w, h;
   float fireRate = 10.0f;
   float toPass = 1.0f / fireRate;
       
   Player()
   {
-    pos = new PVector(width / 2, height / 2);
   }
   
   Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2)
@@ -134,6 +132,7 @@ class Player extends GameObject
     line(-halfWidth + 4, + halfHeight - 6, halfWidth - 4, halfHeight - 6);
     popMatrix();
     
+    //Keeps ship on the screen
     if (pos.x > width)
     {
       pos.x = 0;

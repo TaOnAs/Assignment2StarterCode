@@ -7,7 +7,12 @@ void setup()
 {
   size(displayWidth, displayHeight);
   setUpPlayerControllers();
+  
+  objects.add(asteroid);
 }
+
+Asteroid asteroid = new Asteroid();
+
 
 boolean sketchFullScreen() {
   return true;
