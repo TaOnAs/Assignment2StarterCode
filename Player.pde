@@ -9,12 +9,11 @@ class Player extends GameObject
   char button2;
   int index;
   float fireRate = 5.0f;
-  float toPass = 1.0f / fireRate;
-      
+
   Player()
   {
   }
-  
+
   Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2)
   {
     this();
@@ -31,55 +30,52 @@ class Player extends GameObject
     h = 30;
     theta = 0;
   }
-  
+
   Player(int index, color colour, XML xml)
   {
     this(index, colour
-        , buttonNameToKey(xml, "up")
-        , buttonNameToKey(xml, "down")
-        , buttonNameToKey(xml, "left")
-        , buttonNameToKey(xml, "right")
-        , buttonNameToKey(xml, "start")
-        , buttonNameToKey(xml, "button1")
-        , buttonNameToKey(xml, "button2")
-        );
+      , buttonNameToKey(xml, "up")
+      , buttonNameToKey(xml, "down")
+      , buttonNameToKey(xml, "left")
+      , buttonNameToKey(xml, "right")
+      , buttonNameToKey(xml, "start")
+      , buttonNameToKey(xml, "button1")
+      , buttonNameToKey(xml, "button2")
+      );
     w = 30;
     h = 30;
     theta = 0;
   }
-  
+
   void update()
   {
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    
-    
+
+
     if (checkKey(up))
     {
-      if(speed < 10)
+      if (speed < 10)
       {
         speed = speed + 0.15;
       }
       PVector velocity = PVector.mult(forward, speed);
       pos.add(velocity);
       //pos.add(forward);
-      
-    }
-    else
+    } else
     {
-      if(speed > 0)
+      if (speed > 0)
       {
         speed = speed - 0.05;
-        PVector velocity = PVector.mult(forward , speed);
+        PVector velocity = PVector.mult(forward, speed);
         pos.add(velocity);
-      }
-      else
+      } else
       {
         pos.x = pos.x;
         pos.y = pos.y;
       }
     }
-    
+
     if (checkKey(down))
     {
       //pos.y += 1;
@@ -111,26 +107,29 @@ class Player extends GameObject
     if (checkKey(button2))
     {
       println("Player " + index + " butt2");
-    }    
-    
-
+    }
   }
-  
+
   void display()
   {    
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
-    
+
     stroke(colour);
     float halfWidth = w / 3;
     float  halfHeight = h / 2;    
-    
+
     line(-halfWidth, halfHeight, 0, - halfHeight);
     line(0, - halfHeight, halfWidth, halfHeight);
-    line(-halfWidth + 4, + halfHeight - 6, halfWidth - 4, halfHeight - 6);
+    line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
+    if (checkKey(up))
+    {
+      line(-w/4, halfHeight - 6, 0, halfHeight + 4);
+      line(0, halfHeight + 4, w/4, halfHeight-6);
+    }
     popMatrix();
-    
+
     //Keeps ship on the screen
     if (pos.x > width)
     {
@@ -146,5 +145,6 @@ class Player extends GameObject
     {
       pos.y = height;
     }
-  }  
+  }
 }
+

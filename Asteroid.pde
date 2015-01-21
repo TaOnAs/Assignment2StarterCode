@@ -15,7 +15,7 @@ class Asteroid extends GameObject
     forward.x = sin(theta);
     forward.y = -cos(theta);
     speed = 8;
-    s=1;
+    s=2;
 
     PVector velocity = PVector.mult(forward, speed);
     pos.add(velocity);
@@ -52,6 +52,7 @@ class Asteroid extends GameObject
       line(-w/4, -halfHeight, -halfWidth, 0);
     } else if (s==2)
     {
+      line(-halfWidth, 0, -w/4, halfHeight);
     } else if (s==3)
     {
     }
