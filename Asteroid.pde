@@ -5,16 +5,36 @@ class Asteroid extends GameObject
   Asteroid()
   {
     theta = random(0, 360);
-    pos = new PVector(random(0, width), random(0, height));
+    pos = new PVector(250, 250);
     w = 60;
     h = 60;
+    level = 3;
   } 
+
+  Asteroid(float posx, float posy, int _level)
+  {
+    level = _level;
+    theta = random(0, 360);
+    pos = new PVector(posx, posy);
+
+    if (level == 2)
+    {
+      w = 30;
+      h = 30;
+    } else
+    {
+      w = 15;
+      h = 15;
+    }
+  }
+
+
 
   void update()
   {
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    speed = 8;
+    speed = 5;
     s = 1;
 
     PVector velocity = PVector.mult(forward, speed);
@@ -38,7 +58,7 @@ class Asteroid extends GameObject
       line( -5, 0, 5, 0);
     } else if (s==1)
     {
-      //ellipse(0,0,w,h);
+      ellipse(0, 0, w, h);
       line(-halfWidth, 0, -halfWidth, w/5);
       line(-halfWidth, w/5, -w/6, halfHeight);
       line(-w/6, halfHeight, w/6, w/4);

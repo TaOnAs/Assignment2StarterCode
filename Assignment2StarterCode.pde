@@ -9,16 +9,6 @@ void setup()
   setUpPlayerControllers();
 
   objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-  objects.add(new Asteroid());
-}
-
-
-boolean sketchFullScreen() {
-  return true;
 }
 
 void draw()
@@ -34,18 +24,48 @@ void draw()
       objects.remove(i);
     }
   }
-
-  for ( int i = 0; i < objects.size () - 1; i++)
+  for ( int i = 0; i < objects.size (); i++)
   {
     GameObject object1 = objects.get(i);
 
-    for ( int j = 0; j < objects.size (); j++)
+    if (object1 instanceof Player)
     {
-      GameObject object2 = objects.get(j);
-      
-      if(object1.collides(object2))
+      for ( int j = 0; j < objects.size (); j++)
       {
-         println("hit"); 
+        GameObject object2 = objects.get(j);
+        if (object2 instanceof Asteroid)
+        {
+          //println("check player at " + object1.pos.x + " " + object1.pos.y + " Asteroid: " + object2.pos.x + " " + object2.pos.y);
+          if (object1.collides(object2))
+          {
+            println("player hit");
+          }
+        }
+      }
+    }
+    if (object1 instanceof Bullet)
+    {
+      for ( int j = 0; j < objects.size (); j++)
+      {
+        GameObject Asteroids = objects.get(j);
+        if (Asteroids instanceof Asteroid)
+        {
+          //println("check bullet " + object1.name + " at " + object1.pos.x + " " + object1.pos.y + " Collidable: " + object2.pos.x + " " + object2.pos.y);    
+          if (Asteroids.collides(object1))
+          {
+            println("bullet hit");
+            objects.remove(object1);
+            println("Asteroid Level: " +Asteroids.level);
+            if (Asteroids.level > 1)
+            {
+              objects.add(new Asteroid(Asteroids.pos.x, Asteroids.pos.y, Asteroids.level - 1));
+              objects.add(new Asteroid(Asteroids.pos.x+5, Asteroids.pos.y-5, Asteroids.level -1));
+            }
+            objects.remove(Asteroids);
+
+            break;
+          }
+        }
       }
     }
   }

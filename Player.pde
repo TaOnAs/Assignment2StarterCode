@@ -10,6 +10,7 @@ class Player extends GameObject
   int index;
   float fireRate = 5.0f;
 
+
   Player()
   {
   }
@@ -98,9 +99,9 @@ class Player extends GameObject
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
-        bullet.pos = pos.get();
-        bullet.theta = theta;
         objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = theta;        
         born = 0.0f;
       }
     }
@@ -120,6 +121,7 @@ class Player extends GameObject
     float halfWidth = w / 3;
     float  halfHeight = h / 2;    
 
+    ellipse(0, 0, w, h);
     line(-halfWidth, halfHeight, 0, - halfHeight);
     line(0, - halfHeight, halfWidth, halfHeight);
     line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
@@ -129,7 +131,7 @@ class Player extends GameObject
       line(0, halfHeight + 4, w/4, halfHeight-6);
     }
     popMatrix();
-    
+
 
     //Keeps ship on the screen
     if (pos.x > width)

@@ -1,28 +1,27 @@
 class Bullet extends GameObject
 {
-  float tAlive = 1.0f;
-  
+  float tAlive = 2.0f;
+
   Bullet()
   {
-
   }
-  
+
   void update()
   {
     born += timeDelta;
-    if(born > tAlive)
+    if (born > tAlive)
     {
       alive = false;
     }
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    speed = 22.0f;
-    
-    
+    speed = 10.0f;
+    w = 2;
+
     PVector velocity = PVector.mult(forward, speed);
     pos.add(velocity);
   }
-  
+
   void display()
   {
     pushMatrix();
@@ -30,7 +29,7 @@ class Bullet extends GameObject
     rotate(theta);
     line(0, -2, 0, 2); 
     popMatrix();
-    
+
     //keeps bullets on the screen
     if (pos.x > width)
     {
@@ -46,6 +45,6 @@ class Bullet extends GameObject
     {
       pos.y = height;
     }
-    
   }
 }
+
