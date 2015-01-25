@@ -16,8 +16,6 @@ void setup()
   objects.add(new Asteroid());
 }
 
-Asteroid asteroid = new Asteroid();
-
 
 boolean sketchFullScreen() {
   return true;
@@ -34,6 +32,21 @@ void draw()
     if ( ! objects.get(i).alive)
     {
       objects.remove(i);
+    }
+  }
+
+  for ( int i = 0; i < objects.size () - 1; i++)
+  {
+    GameObject object1 = objects.get(i);
+
+    for ( int j = 0; j < objects.size (); j++)
+    {
+      GameObject object2 = objects.get(j);
+      
+      if(object1.collides(object2))
+      {
+         println("hit"); 
+      }
     }
   }
 }

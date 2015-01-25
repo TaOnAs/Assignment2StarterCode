@@ -15,7 +15,7 @@ class Asteroid extends GameObject
     forward.x = sin(theta);
     forward.y = -cos(theta);
     speed = 8;
-    s=2;
+    s = 1;
 
     PVector velocity = PVector.mult(forward, speed);
     pos.add(velocity);
@@ -25,7 +25,7 @@ class Asteroid extends GameObject
   {
     pushMatrix();
     translate(pos.x, pos.y);
-    rotate(theta);
+    //rotate(theta);
 
     stroke(255);
     float halfWidth = w / 2;
@@ -52,7 +52,18 @@ class Asteroid extends GameObject
       line(-w/4, -halfHeight, -halfWidth, 0);
     } else if (s==2)
     {
-      line(-halfWidth, 0, -w/4, halfHeight);
+      //ellipse(0,0,w,h);
+      line(-halfWidth, 0, -halfWidth, h/8);
+      line(-halfWidth, h/8, -w/6, halfHeight);
+      line(-w/6, halfHeight, w/4, halfHeight);
+      line(w/4, halfHeight, halfWidth, h/6);
+      line(halfWidth, h/6, halfWidth, 0);
+      line(halfWidth, 0, w/4, - h/3);
+      line(w/4, - h/3, w/5, -h/6);
+      line(w/5, -h/6, w/9, -h/3); 
+      line(w/9, - h/3, - w/10, -h/4);
+      line(- w/10, -h/4, 0, -h/8);
+      line(0, -h/8, - halfWidth, 0);
     } else if (s==3)
     {
     }

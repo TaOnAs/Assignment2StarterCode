@@ -129,6 +129,7 @@ class Player extends GameObject
       line(0, halfHeight + 4, w/4, halfHeight-6);
     }
     popMatrix();
+    
 
     //Keeps ship on the screen
     if (pos.x > width)

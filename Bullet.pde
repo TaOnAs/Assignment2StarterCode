@@ -18,6 +18,7 @@ class Bullet extends GameObject
     forward.y = -cos(theta);
     speed = 22.0f;
     
+    
     PVector velocity = PVector.mult(forward, speed);
     pos.add(velocity);
   }

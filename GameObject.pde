@@ -7,7 +7,7 @@ class GameObject
    float theta;
    float speed;
    float born = 0.0f;
-   float timeDelta = 1.0f /60.0f;
+   float timeDelta = 1.0f / 60.0f;
    boolean alive;
    
   GameObject()
@@ -26,5 +26,11 @@ class GameObject
  void display()
  {
    
+ }
+ //c
+ boolean collides(GameObject s)
+ {
+   float dist = PVector.dist(s.pos, pos);
+   return (dist < s.w + w);  
  }
 }
