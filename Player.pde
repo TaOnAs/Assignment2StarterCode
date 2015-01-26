@@ -118,7 +118,51 @@ class Player extends GameObject
       println("Player " + index + " butt2");
     }
 
-    if (checkKey(bup))
+    if (checkKey(bup) && checkKey(bright))
+    {
+      if (frameCount % (60/fireRate) == 0)
+      {
+        Bullet bullet = new Bullet();
+        objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = PI/4;        
+        born = 0.0f;
+      }
+    }
+    else if (checkKey(bup) && checkKey(bleft))
+    {
+      if (frameCount % (60/fireRate) == 0)
+      {
+        Bullet bullet = new Bullet();
+        objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = -(PI/4);        
+        born = 0.0f;
+      }
+    }
+    else if (checkKey(bdown) && checkKey(bright))
+    {
+      if (frameCount % (60/fireRate) == 0)
+      {
+        Bullet bullet = new Bullet();
+        objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = PI/4 * 3;        
+        born = 0.0f;
+      }
+    }
+    else if (checkKey(bdown) && checkKey(bleft))
+    {
+      if (frameCount % (60/fireRate) == 0)
+      {
+        Bullet bullet = new Bullet();
+        objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = (PI/4) * 5;        
+        born = 0.0f;
+      }
+    }
+    else if (checkKey(bup))
     {
       if (frameCount % (60/fireRate) == 0)
       {
