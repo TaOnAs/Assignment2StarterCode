@@ -3,6 +3,7 @@ boolean gameOver = false;
 int lives = 3;
 int score = 9800;
 int oneUp = 10000;
+float angle;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
@@ -30,13 +31,53 @@ void draw()
       objects.get(i).update();
       objects.get(i).display();
 
+      if (objects.get(i) instanceof Enemy)
+      {
+
+        for (int j = 0; j < objects.size (); j++)
+        {
+          if (objects.get(j) instanceof Player)
+          {
+            GameObject eny = objects.get(i);
+            GameObject play = objects.get(j);
+            angle = PVector.angleBetween(play.pos, eny.pos );
+            println(angle);
+
+            if (frameCount % 120 == 0)
+            {
+              Bullet bullet = new Bullet();
+              objects.add(bullet);
+              bullet.pos = eny.pos.get();
+              bullet.theta = degrees(angle);
+            }
+          }
+        }
+      }
+
       if ( ! objects.get(i).alive)
       {
         objects.remove(i);
       }
     }
+
+
+
     collision();
   }
+}
+void Respawn(GameObject player)
+{
+
+  player.born = 0;
+  player.pos.x = width/2; 
+  player.pos.y = height/2;
+  player.speed = 0;
+  for ( int k = 0; k < 100; k++)
+  {
+    objects.add(new Explosion(player.pos.x + random(-5, 5), player.pos.y + random(-5, 5), 2) );
+  }
+  //wait3 seconds
+  //move player back to center with animation
 }
 
 void keyPressed()
@@ -87,7 +128,7 @@ void setUpPlayerControllers()
   {
     XML playerXML = children[i];
     Player p = new Player(i, color((255)), playerXML);
-    Enemy e = new Enemy(50,50);
+    Enemy e = new Enemy(width/2, 500);
     p.pos.x = width/2;
     p.pos.y = height/2;
     objects.add(p);
@@ -111,12 +152,22 @@ void collision()
           //println("check player at " + object1.pos.x + " " + object1.pos.y + " Asteroid: " + object2.pos.x + " " + object2.pos.y);
           if (object1.collides(object2))
           {
-            for ( int k = 0; k < 3; k++)
+            if (object1.born > 2)
             {
-              objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 2) );
+              for ( int k = 0; k < 3; k++)
+              {
+                objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 2) );
+              }
+              if(lives > 0)
+              {
+                Respawn(object1);
+              }
+              else
+              {
+                gameOver = true; 
+              } 
+              lives--;
             }
-            objects.remove(object1);
-            lives--;
           }
         }
       }
@@ -131,9 +182,9 @@ void collision()
           //println("check bullet " + object1.name + " at " + object1.pos.x + " " + object1.pos.y + " Collidable: " + object2.pos.x + " " + object2.pos.y);    
           if (Asteroids.collides(object1))
           {
-            println("bullet hit");
+            // println("bullet hit");
             objects.remove(object1);
-            println("Asteroid Level: " +Asteroids.level);
+            //println("Asteroid Level: " +Asteroids.level);
             if (Asteroids.level > 1)
             {
               objects.add(new Asteroid(Asteroids.pos.x, Asteroids.pos.y, Asteroids.level - 1));

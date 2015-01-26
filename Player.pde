@@ -61,6 +61,7 @@ class Player extends GameObject
 
   void update()
   {
+    born += timeDelta;
     forward.x = sin(theta);
     forward.y = -cos(theta);
 

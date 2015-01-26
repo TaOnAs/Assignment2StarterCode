@@ -29,7 +29,7 @@ class GameObject
   boolean collides(GameObject s)
   {
     float dist = PVector.dist(s.pos, pos);
-    println(dist + "  " +  s.w + " " + w + "if less than " + (s.w/2+w/2));
+    //println(dist + "  " +  s.w + " " + w + "if less than " + (s.w/2+w/2));
 
     return (dist < (s.w/2+w/2));
   }
