@@ -109,6 +109,10 @@ void collision()
           //println("check player at " + object1.pos.x + " " + object1.pos.y + " Asteroid: " + object2.pos.x + " " + object2.pos.y);
           if (object1.collides(object2))
           {
+            for ( int k = 0; k < 3; k++)
+            {
+              objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 2) );
+            }
             objects.remove(object1);
             lives--;
           }
@@ -143,12 +147,12 @@ void collision()
             {
               score = score + 100;
             }
-            
+
             for ( int k = 0; k < 10; k++)
             {
-              objects.add(new Explosion(Asteroids.pos.x + random(-5,5), Asteroids.pos.y + random(-5,5)) );
+              objects.add(new Explosion(Asteroids.pos.x + random(-5, 5), Asteroids.pos.y + random(-5, 5), 1) );
             }
-            
+
             objects.remove(Asteroids);
 
             break;
@@ -157,7 +161,5 @@ void collision()
       }
     }
   }
-  
-
 }
 
