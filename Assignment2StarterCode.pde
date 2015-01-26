@@ -1,7 +1,7 @@
 boolean play = false;
 boolean gameOver = false;
 int lives = 3;
-int score = 9800;
+int score = 0;
 int oneUp = 10000;
 float angle;
 
@@ -40,15 +40,18 @@ void draw()
           {
             GameObject eny = objects.get(i);
             GameObject play = objects.get(j);
-            angle = PVector.angleBetween(play.pos, eny.pos );
-            println(angle);
+            float radAngle = atan2(eny.pos.y - play.pos.y, eny.pos.x - play.pos.x);
+            //float DegAngle = degrees(radAngle);
+
+            //println("Radians???: " + radAngle + "   Degrees???: " +  DegAngle + 90);
 
             if (frameCount % 120 == 0)
             {
               Bullet bullet = new Bullet();
               objects.add(bullet);
               bullet.pos = eny.pos.get();
-              bullet.theta = degrees(angle);
+              bullet.forward = eny.forward;
+              bullet.theta = radAngle - PI/2;
             }
           }
         }
