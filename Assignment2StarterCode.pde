@@ -1,5 +1,7 @@
 boolean play = false;
 boolean gameOver = false;
+int lives = 3;
+int score = 0;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
@@ -22,6 +24,7 @@ void draw()
   else if (play && !gameOver)
   {
     background(0);
+    info();
     for (int i = 0; i < objects.size (); i++)
     {
       objects.get(i).update();

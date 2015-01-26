@@ -25,10 +25,9 @@ class GameObject
   void display()
   {
   }
-  //c
+  
   boolean collides(GameObject s)
   {
-
     float dist = PVector.dist(s.pos, pos);
     println(dist + "  " +  s.w + " " + w + "if less than " + (s.w/2+w/2));
 

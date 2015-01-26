@@ -4,20 +4,21 @@ class Asteroid extends GameObject
 
   Asteroid()
   {
-    theta = random(0, 360);
-    pos = new PVector(250, 250);
-    w = 60;
-    h = 60;
-    level = 3;
+    this(random(0, width), random(0, height), 3);
   } 
 
   Asteroid(float posx, float posy, int _level)
   {
-    level = _level;
-    theta = random(0, 360);
     pos = new PVector(posx, posy);
-
-    if (level == 2)
+    theta = random(0, TWO_PI);
+    level = _level;
+    
+    if (level == 3)
+    {
+      w = 60;
+      h = 60;
+    }
+    else if (level == 2)
     {
       w = 30;
       h = 30;

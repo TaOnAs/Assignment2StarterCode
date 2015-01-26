@@ -14,7 +14,6 @@ class Player extends GameObject
   int index;
   float fireRate = 5.0f;
 
-
   Player()
   {
   }
