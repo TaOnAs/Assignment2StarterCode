@@ -26,10 +26,16 @@ void info()
   int y = height / 16;
   int y2 = height / 24;
   int dist = 30;
-  
+
   textSize(20);
   text(score, x, y2);
-  
+
+  if (score > oneUp)
+  {
+    lives++;
+    oneUp = oneUp + oneUp;
+  }
+
   for ( int i = 0; i < lives; i++)
   {
     line(x + -halfWidth + (dist * i), y + halfHeight, x + 0 + (dist * i), y - halfHeight);

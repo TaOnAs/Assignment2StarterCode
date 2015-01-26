@@ -1,7 +1,8 @@
 boolean play = false;
 boolean gameOver = false;
 int lives = 3;
-int score = 0;
+int score = 9800;
+int oneUp = 10000;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
@@ -108,7 +109,8 @@ void collision()
           //println("check player at " + object1.pos.x + " " + object1.pos.y + " Asteroid: " + object2.pos.x + " " + object2.pos.y);
           if (object1.collides(object2))
           {
-            println("player hit");
+            objects.remove(object1);
+            lives--;
           }
         }
       }
@@ -141,6 +143,12 @@ void collision()
             {
               score = score + 100;
             }
+            
+            for ( int k = 0; k < 10; k++)
+            {
+              objects.add(new Explosion(Asteroids.pos.x + random(-5,5), Asteroids.pos.y + random(-5,5)) );
+            }
+            
             objects.remove(Asteroids);
 
             break;
@@ -149,5 +157,7 @@ void collision()
       }
     }
   }
+  
+
 }
 
