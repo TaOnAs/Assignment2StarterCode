@@ -7,6 +7,10 @@ class Player extends GameObject
   char start;
   char button1;
   char button2;
+  char bup;
+  char bdown;
+  char bleft;
+  char bright;
   int index;
   float fireRate = 5.0f;
 
@@ -15,7 +19,7 @@ class Player extends GameObject
   {
   }
 
-  Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2)
+  Player(int index, color colour, char up, char down, char left, char right, char start, char button1, char button2, char bup, char bdown, char bleft, char bright)
   {
     this();
     this.index = index;
@@ -27,6 +31,10 @@ class Player extends GameObject
     this.start = start;
     this.button1 = button1;
     this.button2 = button2;
+    this.bup = bup;
+    this.bdown = bdown;
+    this.bleft = bleft;
+    this.bright = bright;
     w = 30;
     h = 30;
     theta = 0;
@@ -42,6 +50,10 @@ class Player extends GameObject
       , buttonNameToKey(xml, "start")
       , buttonNameToKey(xml, "button1")
       , buttonNameToKey(xml, "button2")
+      , buttonNameToKey(xml, "bup")
+      , buttonNameToKey(xml, "bdown")
+      , buttonNameToKey(xml, "bleft")
+      , buttonNameToKey(xml, "bright")
       );
     w = 30;
     h = 30;
@@ -52,7 +64,7 @@ class Player extends GameObject
   {
     forward.x = sin(theta);
     forward.y = -cos(theta);
-
+    println(theta);
 
     if (checkKey(up))
     {
@@ -62,7 +74,6 @@ class Player extends GameObject
       }
       PVector velocity = PVector.mult(forward, speed);
       pos.add(velocity);
-      //pos.add(forward);
     } else
     {
       if (speed > 0)
@@ -81,33 +92,75 @@ class Player extends GameObject
     {
       //pos.y += 1;
     }
+
     if (checkKey(left))
     {
       theta -= 0.1f;
-    }    
+    }   
+
     if (checkKey(right))
     {
       theta += 0.1f;
     }
+
     if (checkKey(start))
     {
       println("Player " + index + " start");
     }
+
     if (checkKey(button1))
     {
 
+    }
+
+    if (checkKey(button2))
+    {
+      println("Player " + index + " butt2");
+    }
+
+    if (checkKey(bup))
+    {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
         objects.add(bullet);
         bullet.pos = pos.get();
-        bullet.theta = theta;        
+        bullet.theta = 0;        
         born = 0.0f;
       }
     }
-    if (checkKey(button2))
+    else if (checkKey(bdown))
     {
-      println("Player " + index + " butt2");
+      if (frameCount % (60/fireRate) == 0)
+      {
+        Bullet bullet = new Bullet();
+        objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = PI;        
+        born = 0.0f;
+      }
+    }
+    else if (checkKey(bleft))
+    {
+      if (frameCount % (60/fireRate) == 0)
+      {
+        Bullet bullet = new Bullet();
+        objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = (PI/2 * 3);        
+        born = 0.0f;
+      }
+    }
+    else if (checkKey(bright))
+    {
+      if (frameCount % (60/fireRate) == 0)
+      {
+        Bullet bullet = new Bullet();
+        objects.add(bullet);
+        bullet.pos = pos.get();
+        bullet.theta = (PI/2);        
+        born = 0.0f;
+      }
     }
   }
 
@@ -131,7 +184,7 @@ class Player extends GameObject
       line(0, halfHeight + 4, w/4, halfHeight-6);
     }
     popMatrix();
-
+    
 
     //Keeps ship on the screen
     if (pos.x > width)

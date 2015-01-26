@@ -8,12 +8,13 @@
 		<insertcoin>5</insertcoin>
 		<button1>e</button1>
 		<button2>r</button2>
+		<bup>i</bup>
+		<bdown>k</bdown>
+		<bleft>j</bleft>
+		<bright>l</bright>
+
 	</player>
 	<bullet>
-		<up>i</up>
-		<down>k</down>
-		<left>j</left>
-		<right>l</right>
 		<start>p</start>
 		<insertcoin>5</insertcoin>
 		<button1>p</button1>

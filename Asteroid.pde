@@ -28,8 +28,6 @@ class Asteroid extends GameObject
     }
   }
 
-
-
   void update()
   {
     forward.x = sin(theta);
