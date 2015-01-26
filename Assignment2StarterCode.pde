@@ -87,9 +87,11 @@ void setUpPlayerControllers()
   {
     XML playerXML = children[i];
     Player p = new Player(i, color((255)), playerXML);
+    Enemy e = new Enemy(50,50);
     p.pos.x = width/2;
     p.pos.y = height/2;
     objects.add(p);
+    objects.add(e);
   }
 }
 

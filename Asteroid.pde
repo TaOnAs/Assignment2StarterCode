@@ -12,7 +12,7 @@ class Asteroid extends GameObject
     pos = new PVector(posx, posy);
     theta = random(0, TWO_PI);
     level = _level;
-    
+    speed = random(2, 7); 
     if (level == 3)
     {
       w = 60;
@@ -33,7 +33,6 @@ class Asteroid extends GameObject
   {
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    speed = 5;
     s = 1;
 
     PVector velocity = PVector.mult(forward, speed);
