@@ -17,11 +17,10 @@ void setup()
 void draw()
 {
 
-  if(!play && !gameOver)
+  if (!play && !gameOver)
   {
     startScreen();
-  }
-  else if (play && !gameOver)
+  } else if (play && !gameOver)
   {
     background(0);
     info();
@@ -131,6 +130,16 @@ void collision()
             {
               objects.add(new Asteroid(Asteroids.pos.x, Asteroids.pos.y, Asteroids.level - 1));
               objects.add(new Asteroid(Asteroids.pos.x+5, Asteroids.pos.y-5, Asteroids.level -1));
+            }
+            if (Asteroids.level == 3)
+            {
+              score = score + 20;
+            } else if (Asteroids.level == 2)
+            {
+              score = score + 50;
+            } else
+            {
+              score = score + 100;
             }
             objects.remove(Asteroids);
 
