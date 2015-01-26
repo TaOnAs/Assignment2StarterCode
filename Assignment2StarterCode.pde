@@ -1,4 +1,5 @@
-
+boolean play = false;
+boolean gameOver = false;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
@@ -13,20 +14,26 @@ void setup()
 
 void draw()
 {
-  background(0);
-  for (int i = 0; i < objects.size (); i++)
+
+  if(!play && !gameOver)
   {
-    objects.get(i).update();
-    objects.get(i).display();
-
-    if ( ! objects.get(i).alive)
-    {
-      objects.remove(i);
-    }
+    startScreen();
   }
+  else if (play && !gameOver)
+  {
+    background(0);
+    for (int i = 0; i < objects.size (); i++)
+    {
+      objects.get(i).update();
+      objects.get(i).display();
 
-  collision();
- 
+      if ( ! objects.get(i).alive)
+      {
+        objects.remove(i);
+      }
+    }
+    collision();
+  }
 }
 
 void keyPressed()
@@ -85,7 +92,7 @@ void setUpPlayerControllers()
 
 void collision()
 {
-   for ( int i = 0; i < objects.size (); i++)
+  for ( int i = 0; i < objects.size (); i++)
   {
     GameObject object1 = objects.get(i);
 

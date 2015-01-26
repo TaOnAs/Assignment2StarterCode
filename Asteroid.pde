@@ -56,7 +56,7 @@ class Asteroid extends GameObject
       line( -5, 0, 5, 0);
     } else if (s==1)
     {
-      ellipse(0, 0, w, h);
+      //ellipse(0, 0, w, h);
       line(-halfWidth, 0, -halfWidth, w/5);
       line(-halfWidth, w/5, -w/6, halfHeight);
       line(-w/6, halfHeight, w/6, w/4);

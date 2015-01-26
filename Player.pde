@@ -64,7 +64,6 @@ class Player extends GameObject
   {
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    println(theta);
 
     if (checkKey(up))
     {
@@ -218,7 +217,7 @@ class Player extends GameObject
     float halfWidth = w / 3;
     float  halfHeight = h / 2;    
 
-    ellipse(0, 0, w, h);
+    //ellipse(0, 0, w, h);
     line(-halfWidth, halfHeight, 0, - halfHeight);
     line(0, - halfHeight, halfWidth, halfHeight);
     line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
