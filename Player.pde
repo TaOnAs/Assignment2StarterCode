@@ -61,7 +61,7 @@ class Player extends GameObject
 
   void update()
   {
-    born += timeDelta;
+    respawn += timeDelta;
     forward.x = sin(theta);
     forward.y = -cos(theta);
 
@@ -109,7 +109,6 @@ class Player extends GameObject
 
     if (checkKey(button1))
     {
-
     }
 
     if (checkKey(button2))
@@ -122,83 +121,84 @@ class Player extends GameObject
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
-        bullet.theta = PI/4;        
+        bullet.theta = PI/4;
         born = 0.0f;
       }
-    }
-    else if (checkKey(bup) && checkKey(bleft))
+    } else if (checkKey(bup) && checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
         bullet.theta = -(PI/4);        
         born = 0.0f;
       }
-    }
-    else if (checkKey(bdown) && checkKey(bright))
+    } else if (checkKey(bdown) && checkKey(bright))
     {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
         bullet.theta = PI/4 * 3;        
         born = 0.0f;
       }
-    }
-    else if (checkKey(bdown) && checkKey(bleft))
+    } else if (checkKey(bdown) && checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
         bullet.theta = (PI/4) * 5;        
         born = 0.0f;
       }
-    }
-    else if (checkKey(bup))
+    } else if (checkKey(bup))
     {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
         bullet.theta = 0;        
         born = 0.0f;
       }
-    }
-    else if (checkKey(bdown))
+    } else if (checkKey(bdown))
     {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
         bullet.theta = PI;        
         born = 0.0f;
       }
-    }
-    else if (checkKey(bleft))
+    } else if (checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
         bullet.theta = (PI/2 * 3);        
         born = 0.0f;
       }
-    }
-    else if (checkKey(bright))
+    } else if (checkKey(bright))
     {
       if (frameCount % (60/fireRate) == 0)
       {
         Bullet bullet = new Bullet();
+        bullet.friendly = 1;        
         objects.add(bullet);
         bullet.pos = pos.get();
         bullet.theta = (PI/2);        
@@ -227,7 +227,7 @@ class Player extends GameObject
       line(0, halfHeight + 4, w/4, halfHeight-6);
     }
     popMatrix();
-    
+
 
     //Keeps ship on the screen
     if (pos.x > width)

@@ -10,7 +10,7 @@ boolean[] keys = new boolean[526];
 
 void setup()
 {
-  size(displayWidth, displayHeight);
+  size(1280, 1024);
   setUpPlayerControllers();
 
   objects.add(new Asteroid());
@@ -48,6 +48,7 @@ void draw()
             if (frameCount % 120 == 0)
             {
               Bullet bullet = new Bullet();
+              bullet.friendly = 2;
               objects.add(bullet);
               bullet.pos = eny.pos.get();
               bullet.forward = eny.forward;
@@ -69,7 +70,7 @@ void draw()
 void Respawn(GameObject player)
 {
 
-  player.born = 0;
+  player.respawn = 0;
   player.pos.x = width/2; 
   player.pos.y = height/2;
   player.speed = 0;
@@ -151,10 +152,18 @@ void collision()
         if (object2 instanceof Asteroid || object2 instanceof Bullet || object2 instanceof Enemy)
         {
           //println("check player at " + object1.pos.x + " " + object1.pos.y + " Asteroid: " + object2.pos.x + " " + object2.pos.y);
-          if (object1.collides(object2))
+          if (object2.friendly != 1 && object1.respawn > 2)
           {
-            if (object1.born > 2)
+            if (object1.collides(object2))
             {
+              if (object2 instanceof Enemy || object2 instanceof Asteroid)
+              {
+                for ( int k = 0; k < 10; k++)
+                {
+                  objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 1) );
+                }
+              }
+              objects.remove(object2);
               for ( int k = 0; k < 3; k++)
               {
                 objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 2) );
@@ -162,11 +171,11 @@ void collision()
               if (lives > 0)
               {
                 Respawn(object1);
+                lives--;
               } else
               {
                 gameOver = true;
-              } 
-              lives--;
+              }
             }
           }
         }
@@ -183,7 +192,15 @@ void collision()
           if (Asteroids.collides(object1))
           {
             // println("bullet hit");
+            if (object1 instanceof Enemy)
+            {
+              for ( int k = 0; k < 10; k++)
+              {
+                objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 1) );
+              }
+            }
             objects.remove(object1);
+
             //println("Asteroid Level: " +Asteroids.level);
             if (Asteroids.level > 1)
             {
@@ -209,6 +226,28 @@ void collision()
             objects.remove(Asteroids);
 
             break;
+          }
+        }
+      }
+    }
+    if (object1 instanceof Enemy)
+    {
+      for ( int j = 0; j < objects.size (); j++)
+      {
+        GameObject object2 = objects.get(j);
+        if ( object2 instanceof Bullet)
+        {
+          if (object2.friendly != 2)
+          {
+            if (object2.collides(object1))
+            {
+              for ( int k = 0; k < 10; k++)
+              {
+                objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 1) );
+              }
+              objects.remove(object1);
+              score = score + 250;
+            }
           }
         }
       }

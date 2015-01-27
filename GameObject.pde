@@ -10,6 +10,8 @@ class GameObject
   float timeDelta = 1.0f / 60.0f;
   boolean alive;  
   int level;
+  float respawn = 0;
+  int friendly = 0;
 
   GameObject()
   {

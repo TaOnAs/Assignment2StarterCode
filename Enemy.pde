@@ -22,7 +22,7 @@ class Enemy extends GameObject
 
     w = 35;
     h = 15;
-    speed = 4;
+    speed = 1;
   }
 
   void update()
