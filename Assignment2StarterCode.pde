@@ -148,7 +148,7 @@ void collision()
       for ( int j = 0; j < objects.size (); j++)
       {
         GameObject object2 = objects.get(j);
-        if (object2 instanceof Asteroid)
+        if (object2 instanceof Asteroid || object2 instanceof Bullet || object2 instanceof Enemy)
         {
           //println("check player at " + object1.pos.x + " " + object1.pos.y + " Asteroid: " + object2.pos.x + " " + object2.pos.y);
           if (object1.collides(object2))
@@ -172,7 +172,7 @@ void collision()
         }
       }
     }
-    if (object1 instanceof Bullet)
+    if (object1 instanceof Bullet || object1 instanceof Enemy )
     {
       for ( int j = 0; j < objects.size (); j++)
       {
