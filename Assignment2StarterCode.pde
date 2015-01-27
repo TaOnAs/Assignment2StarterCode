@@ -6,16 +6,18 @@ int oneUp = 10000;
 boolean ship = true;
 float angle;
 boolean twinshoot = true;
+Level lvl;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
+float timer;
 
 void setup()
 {
   size(1280, 1024);
   setUpPlayerControllers();
-
-  objects.add(new Asteroid());
+  lvl = new Level();
+  lvl.setupLevel();
 }
 
 void draw()
@@ -28,14 +30,22 @@ void draw()
   {
     background(0);
     info();
+
+    Boolean isEnemyAlive = false;
+    Boolean isAsteroidsLeft = false;
     for (int i = 0; i < objects.size (); i++)
     {
       objects.get(i).update();
       objects.get(i).display();
-
+      
+      if (objects.get(i) instanceof Asteroid)
+      {
+        isAsteroidsLeft = true;
+      }
+      
       if (objects.get(i) instanceof Enemy)
       {
-
+        isEnemyAlive = true;
         for (int j = 0; j < objects.size (); j++)
         {
           if (objects.get(j) instanceof Player)
@@ -49,7 +59,7 @@ void draw()
 
             if (frameCount % 120 == 0)
             {
-              Bullet bullet = new Bullet(2,eny.pos.get(),radAngle - PI/2,0);
+              Bullet bullet = new Bullet(2, eny.pos.get(), radAngle - PI/2, 0);
               objects.add(bullet);
             }
           }
@@ -60,6 +70,22 @@ void draw()
       {
         objects.remove(i);
       }
+    }
+
+    if (isEnemyAlive == false)
+    {
+      timer += 1.0f / 60.0f;
+      if ( timer > 10)
+      {
+        Enemy e = new Enemy((int) random(0,2));
+        objects.add(e);
+        timer = 0;
+      }
+    }
+    
+    if(isAsteroidsLeft == false)
+    {
+      lvl.NextLevel();
     }
 
     collision();
@@ -126,13 +152,9 @@ void setUpPlayerControllers()
   {
     XML playerXML = children[i];
     Player p = new Player(i, color((255)), playerXML, ship);
-    Enemy e = new Enemy(1);
-    Enemy e1 = new Enemy(-1);
+
     p.pos.x = width/2;
-    p.pos.y = height/2;
-    objects.add(p);
-    objects.add(e);
-    objects.add(e1);
+    p.pos.y = height/2;    objects.add(p);
   }
 }
 

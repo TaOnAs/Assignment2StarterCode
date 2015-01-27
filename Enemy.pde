@@ -15,9 +15,9 @@ class Enemy extends GameObject
       theta = PI/2;
     } else 
     {
-      type = -1;
       pos = new PVector(width, random(0, height));
       theta = - (PI / 2);
+      this.type = -1;
     }
 
     w = 35;

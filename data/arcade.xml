@@ -12,10 +12,10 @@
 		<bdown>k</bdown>
 		<bleft>j</bleft>
 		<bright>l</bright>
-
+		<start>p</start>
 	</player>
 	<bullet>
-		<start>p</start>
+		
 		<insertcoin>5</insertcoin>
 		<button1>p</button1>
 		<button2>[</button2>
