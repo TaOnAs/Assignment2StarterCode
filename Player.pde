@@ -13,6 +13,9 @@ class Player extends GameObject
   char bright;
   int index;
   float fireRate = 5.0f;
+  float accelerate;
+  float rotate;
+
 
   Player()
   {
@@ -39,7 +42,7 @@ class Player extends GameObject
     theta = 0;
   }
 
-  Player(int index, color colour, XML xml)
+  Player(int index, color colour, XML xml, boolean ship)
   {
     this(index, colour
       , buttonNameToKey(xml, "up")
@@ -61,6 +64,16 @@ class Player extends GameObject
 
   void update()
   {
+    if (ship)
+    {
+      accelerate = 0.1f;
+      rotate = 0.12f;
+    } else
+    {
+      accelerate = 0.15f;
+      rotate = 0.1f;
+    }
+
     respawn += timeDelta;
     forward.x = sin(theta);
     forward.y = -cos(theta);
@@ -69,7 +82,7 @@ class Player extends GameObject
     {
       if (speed < 10)
       {
-        speed = speed + 0.15;
+        speed = speed + accelerate;
       }
       PVector velocity = PVector.mult(forward, speed);
       pos.add(velocity);
@@ -94,12 +107,12 @@ class Player extends GameObject
 
     if (checkKey(left))
     {
-      theta -= 0.1f;
+      theta -= rotate;
     }   
 
     if (checkKey(right))
     {
-      theta += 0.1f;
+      theta += rotate;
     }
 
     if (checkKey(start))
@@ -120,56 +133,56 @@ class Player extends GameObject
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),PI/4,0);
+        Bullet bullet = new Bullet(1, pos.get(), PI/4, 0);
         objects.add(bullet);
       }
     } else if (checkKey(bup) && checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),-(PI/4),0);
+        Bullet bullet = new Bullet(1, pos.get(), -(PI/4), 0);
         objects.add(bullet);
       }
     } else if (checkKey(bdown) && checkKey(bright))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),PI/4 * 3,0);
+        Bullet bullet = new Bullet(1, pos.get(), PI/4 * 3, 0);
         objects.add(bullet);
       }
     } else if (checkKey(bdown) && checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),(PI/4) * 5,0);
+        Bullet bullet = new Bullet(1, pos.get(), (PI/4) * 5, 0);
         objects.add(bullet);
       }
     } else if (checkKey(bup))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),0 ,0);
+        Bullet bullet = new Bullet(1, pos.get(), 0, 0);
         objects.add(bullet);
       }
     } else if (checkKey(bdown))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),PI * 3,0);
+        Bullet bullet = new Bullet(1, pos.get(), PI * 3, 0);
         objects.add(bullet);
       }
     } else if (checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),PI/2 * 3,0);
+        Bullet bullet = new Bullet(1, pos.get(), PI/2 * 3, 0);
         objects.add(bullet);
       }
     } else if (checkKey(bright))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet(1,pos.get(),PI/2,0);
+        Bullet bullet = new Bullet(1, pos.get(), PI/2, 0);
         objects.add(bullet);
       }
     }
@@ -185,14 +198,34 @@ class Player extends GameObject
     float halfWidth = w / 3;
     float  halfHeight = h / 2;    
 
-    //ellipse(0, 0, w, h);
-    line(-halfWidth, halfHeight, 0, - halfHeight);
-    line(0, - halfHeight, halfWidth, halfHeight);
-    line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
-    if (checkKey(up))
+    if (ship)
     {
-      line(-w/4, halfHeight - 6, 0, halfHeight + 4);
-      line(0, halfHeight + 4, w/4, halfHeight-6);
+      //ellipse(0, 0, w, h);
+      line(-halfWidth, halfHeight, 0, - halfHeight);
+      line(0, - halfHeight, halfWidth, halfHeight);
+      line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
+      if (checkKey(up))
+      {
+        line(-w/4, halfHeight - 6, 0, halfHeight + 4);
+        line(0, halfHeight + 4, w/4, halfHeight-6);
+      }
+    } else
+    {
+      line(-halfWidth, halfHeight, halfWidth, halfHeight);
+      line(halfWidth, halfHeight, halfWidth, 0);
+      line(halfWidth, 0, halfWidth/2, -halfHeight/2);
+      line(halfWidth/2, -halfHeight/2, 0, -halfHeight);
+      line(0, -halfHeight, -halfWidth/2, -halfHeight/2);
+      line(-halfWidth/2, -halfHeight/2, -halfWidth, 0);
+      line(-halfWidth, 0, -halfWidth, halfHeight);
+      line(-halfWidth/2, halfHeight, -halfWidth/2, halfHeight + 4);
+      line(-halfWidth/2, halfHeight + 4, halfWidth/2, halfHeight + 4);
+      line(halfWidth/2, halfHeight + 4, halfWidth/2, halfHeight);
+      if (checkKey(up))
+      {
+        line(-halfWidth/2, halfHeight + 4, 0, halfHeight + 8);
+        line(0, halfHeight + 8, halfWidth/2, halfHeight + 4);
+      }
     }
     popMatrix();
 

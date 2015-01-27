@@ -3,6 +3,7 @@ boolean gameOver = false;
 int lives = 3;
 int score = 0;
 int oneUp = 10000;
+boolean ship = true;
 float angle;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
@@ -123,7 +124,7 @@ void setUpPlayerControllers()
   for (int i = 0; i < children.length; i ++)  
   {
     XML playerXML = children[i];
-    Player p = new Player(i, color((255)), playerXML);
+    Player p = new Player(i, color((255)), playerXML, ship);
     Enemy e = new Enemy(1);
     Enemy e1 = new Enemy(-1);
     p.pos.x = width/2;
