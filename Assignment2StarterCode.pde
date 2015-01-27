@@ -63,8 +63,6 @@ void draw()
       }
     }
 
-
-
     collision();
   }
 }
@@ -79,8 +77,6 @@ void Respawn(GameObject player)
   {
     objects.add(new Explosion(player.pos.x + random(-5, 5), player.pos.y + random(-5, 5), 2) );
   }
-  //wait3 seconds
-  //move player back to center with animation
 }
 
 void keyPressed()
@@ -131,11 +127,13 @@ void setUpPlayerControllers()
   {
     XML playerXML = children[i];
     Player p = new Player(i, color((255)), playerXML);
-    Enemy e = new Enemy(width/2, 500);
+    Enemy e = new Enemy(1);
+    Enemy e1 = new Enemy(-1);
     p.pos.x = width/2;
     p.pos.y = height/2;
     objects.add(p);
     objects.add(e);
+    objects.add(e1);
   }
 }
 
@@ -161,13 +159,12 @@ void collision()
               {
                 objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 2) );
               }
-              if(lives > 0)
+              if (lives > 0)
               {
                 Respawn(object1);
-              }
-              else
+              } else
               {
-                gameOver = true; 
+                gameOver = true;
               } 
               lives--;
             }
