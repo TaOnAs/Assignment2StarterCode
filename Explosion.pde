@@ -34,13 +34,12 @@ class Explosion extends GameObject
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
-    if(type == 1)
+    if (type == 1)
     {
       point(0, 0);
-    }
-    else
+    } else
     {
-      line(-15,0,15,0); 
+      line(-15, 0, 15, 0);
     }
     popMatrix();
   }

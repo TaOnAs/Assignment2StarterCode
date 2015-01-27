@@ -219,7 +219,11 @@ class Player extends GameObject
 
     if (ship)
     {
-      //ellipse(0, 0, w, h);
+      if (respawn < 2)
+      {
+        noFill();
+        ellipse(0, 0, w + 10, h + 10);
+      }
       line(-halfWidth, halfHeight, 0, - halfHeight);
       line(0, - halfHeight, halfWidth, halfHeight);
       line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
@@ -230,6 +234,11 @@ class Player extends GameObject
       }
     } else
     {
+      if (respawn < 2)
+      {
+        noFill();
+        ellipse(0, 0, w + 12, h + 12);
+      }
       line(-halfWidth, halfHeight, halfWidth, halfHeight);
       line(halfWidth, halfHeight, halfWidth, 0);
       line(halfWidth, 0, halfWidth/2, -halfHeight/2);

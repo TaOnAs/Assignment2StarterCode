@@ -12,7 +12,9 @@ class GameObject
   int level;
   float respawn = 0;
   int friendly = 0;
-
+  
+  
+  
   GameObject()
   {
     alive = true;
@@ -27,7 +29,7 @@ class GameObject
   void display()
   {
   }
-  
+
   boolean collides(GameObject s)
   {
     float dist = PVector.dist(s.pos, pos);

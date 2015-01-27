@@ -19,18 +19,19 @@ class Level
 
     //int NumberOfAsteroids =  children[currentLevel].getInt("asteroids");
     int NumberOfAsteroids =  Integer.parseInt(children[currentLevel].getContent().trim());
-
+    println(NumberOfAsteroids);
     for (int i = 0; i < NumberOfAsteroids; i++)
     {
       Asteroid a = new Asteroid();
       objects.add(a);
+      println("A: " + i + " Size: " + objects.size());
     }
   }
 
   void NextLevel()
   {
     currentLevel++;
-      if (currentLevel > numberOfLevels)
+    if (currentLevel > numberOfLevels)
     {
       //Go to GAME COMPLETE SCREEN
     } else

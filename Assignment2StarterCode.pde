@@ -3,21 +3,27 @@ boolean gameOver = false;
 int lives = 3;
 int score = 0;
 int oneUp = 10000;
-boolean ship = true;
+boolean ship = false;
 float angle;
 boolean twinshoot = true;
 Level lvl;
 
+char up;
+char down;
+char left;
+char right;
+char start;
+char button1;
+char button2;
+
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
-float timer;
+float timer = 0;
 
 void setup()
 {
   size(1280, 1024);
   setUpPlayerControllers();
-  lvl = new Level();
-  lvl.setupLevel();
 }
 
 void draw()
@@ -25,9 +31,11 @@ void draw()
 
   if (!play && !gameOver)
   {
+    reset();
     startScreen();
   } else if (play && !gameOver)
   {
+
     background(0);
     info();
 
@@ -35,14 +43,15 @@ void draw()
     Boolean isAsteroidsLeft = false;
     for (int i = 0; i < objects.size (); i++)
     {
+      //println("Size: " + objects.size());
       objects.get(i).update();
       objects.get(i).display();
-      
+
       if (objects.get(i) instanceof Asteroid)
       {
         isAsteroidsLeft = true;
       }
-      
+
       if (objects.get(i) instanceof Enemy)
       {
         isEnemyAlive = true;
@@ -77,18 +86,23 @@ void draw()
       timer += 1.0f / 60.0f;
       if ( timer > 10)
       {
-        Enemy e = new Enemy((int) random(0,2));
+        Enemy e = new Enemy((int) random(0, 2));
         objects.add(e);
         timer = 0;
       }
     }
-    
-    if(isAsteroidsLeft == false)
-    {
-      lvl.NextLevel();
-    }
 
+    if (isAsteroidsLeft == false)
+    {
+      if (lvl != null)
+      {
+        lvl.NextLevel();
+      }
+    }
     collision();
+  } else
+  {
+    gameOver();
   }
 }
 void Respawn(GameObject player)
@@ -154,7 +168,8 @@ void setUpPlayerControllers()
     Player p = new Player(i, color((255)), playerXML, ship);
 
     p.pos.x = width/2;
-    p.pos.y = height/2;    objects.add(p);
+    p.pos.y = height/2;    
+    objects.add(p);
   }
 }
 
@@ -271,6 +286,27 @@ void collision()
           }
         }
       }
+    }
+  }
+}
+
+void reset()
+{
+  score = 0;
+  lives = 3;
+  oneUp = 10000;
+  if (lvl != null)
+  {
+    lvl.currentLevel = 0;
+  }
+  for (int i = 0; i < objects.size (); i++)
+  {
+    if (objects.get(i) instanceof Player)
+    {
+      //Processing not allowing NOT is silly
+    } else
+    {
+      objects.remove(i);
     }
   }
 }

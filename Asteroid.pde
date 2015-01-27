@@ -1,7 +1,8 @@
 class Asteroid extends GameObject
 {
   int s;
-
+  float theta2;
+  int dir;
   Asteroid()
   {
     this(random(0, width), random(0, height), 3);
@@ -17,8 +18,7 @@ class Asteroid extends GameObject
     {
       w = 60;
       h = 60;
-    }
-    else if (level == 2)
+    } else if (level == 2)
     {
       w = 30;
       h = 30;
@@ -26,6 +26,11 @@ class Asteroid extends GameObject
     {
       w = 15;
       h = 15;
+    }
+    dir = (int) random(-2, 2);
+    if (dir == 0)
+    {
+      dir = 1;
     }
   }
 
@@ -43,8 +48,9 @@ class Asteroid extends GameObject
   {
     pushMatrix();
     translate(pos.x, pos.y);
-    //rotate(theta);
+    rotate(theta2);
 
+    theta2 = theta2 + random(0.005, 0.01) * dir;
     stroke(255);
     float halfWidth = w / 2;
     float halfHeight = h / 2;    
