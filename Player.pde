@@ -15,6 +15,7 @@ class Player extends GameObject
   float fireRate = 5.0f;
   float accelerate;
   float rotate;
+  float power = 50;
 
 
   Player()
@@ -74,6 +75,10 @@ class Player extends GameObject
       rotate = 0.1f;
     }
 
+    if (power < 50)
+    {
+      power += timeDelta;
+    }
     respawn += timeDelta;
     forward.x = sin(theta);
     forward.y = -cos(theta);
@@ -126,7 +131,12 @@ class Player extends GameObject
 
     if (checkKey(button2))
     {
-      println("Player " + index + " butt2");
+      if (power >= 50)
+      {
+        PVector jump = PVector.mult(forward, 200);
+        pos.add(jump);
+        power = 0;
+      }
     }
 
     if (checkKey(bup) && checkKey(bright))
@@ -229,6 +239,14 @@ class Player extends GameObject
     }
     popMatrix();
 
+    if (power >= 50)
+    {
+      fill(255);
+    } else
+    {
+      fill(0);
+    }
+    rect(width/20, height/14, 10, -power);
 
     //Keeps ship on the screen
     if (pos.x > width)

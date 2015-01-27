@@ -28,6 +28,7 @@ void info()
   int dist = 30;
 
   textSize(20);
+  fill(255);
   text(score, x, y2);
 
   if (score > oneUp)
@@ -42,5 +43,6 @@ void info()
     line(x + 0 + (dist * i), y - halfHeight, x + halfWidth + (dist * i), y +halfHeight);
     line(x + -halfWidth + 4 + (dist * i), y + halfHeight - 6, x + halfWidth - 4 + (dist * i), y + halfHeight - 6);
   }
+  
 }
 
