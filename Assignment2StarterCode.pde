@@ -47,12 +47,8 @@ void draw()
 
             if (frameCount % 120 == 0)
             {
-              Bullet bullet = new Bullet();
-              bullet.friendly = 2;
+              Bullet bullet = new Bullet(2,eny.pos.get(),radAngle - PI/2,0);
               objects.add(bullet);
-              bullet.pos = eny.pos.get();
-              bullet.forward = eny.forward;
-              bullet.theta = radAngle - PI/2;
             }
           }
         }

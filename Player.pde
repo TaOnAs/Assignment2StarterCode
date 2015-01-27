@@ -120,89 +120,57 @@ class Player extends GameObject
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),PI/4,0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = PI/4;
-        born = 0.0f;
       }
     } else if (checkKey(bup) && checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),-(PI/4),0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = -(PI/4);        
-        born = 0.0f;
       }
     } else if (checkKey(bdown) && checkKey(bright))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),PI/4 * 3,0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = PI/4 * 3;        
-        born = 0.0f;
       }
     } else if (checkKey(bdown) && checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),(PI/4) * 5,0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = (PI/4) * 5;        
-        born = 0.0f;
       }
     } else if (checkKey(bup))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),0 ,0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = 0;        
-        born = 0.0f;
       }
     } else if (checkKey(bdown))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),PI * 3,0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = PI;        
-        born = 0.0f;
       }
     } else if (checkKey(bleft))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),PI/2 * 3,0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = (PI/2 * 3);        
-        born = 0.0f;
       }
     } else if (checkKey(bright))
     {
       if (frameCount % (60/fireRate) == 0)
       {
-        Bullet bullet = new Bullet();
-        bullet.friendly = 1;        
+        Bullet bullet = new Bullet(1,pos.get(),PI/2,0);
         objects.add(bullet);
-        bullet.pos = pos.get();
-        bullet.theta = (PI/2);        
-        born = 0.0f;
       }
     }
   }

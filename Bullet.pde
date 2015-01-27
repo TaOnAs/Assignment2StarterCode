@@ -6,6 +6,14 @@ class Bullet extends GameObject
   {
   }
 
+  Bullet(int friendly, PVector pos, float theta, float born)
+  {
+    this.friendly = friendly;
+    this.pos= pos;
+    this.theta = theta;
+    this.born = born;
+  }
+
   void update()
   {
     born += timeDelta;
