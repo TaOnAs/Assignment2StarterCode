@@ -5,6 +5,7 @@ int score = 0;
 int oneUp = 10000;
 boolean ship = true;
 float angle;
+boolean twinshoot = true;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];

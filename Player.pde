@@ -124,9 +124,16 @@ class Player extends GameObject
     {
       println("Player " + index + " start");
     }
-
-    if (checkKey(button1))
+    if (!twinshoot)
     {
+      if (checkKey(button1))
+      {
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), theta, 0);
+          objects.add(bullet);
+        }
+      }
     }
 
     if (checkKey(button2))
@@ -138,62 +145,64 @@ class Player extends GameObject
         power = 0;
       }
     }
-
-    if (checkKey(bup) && checkKey(bright))
+    if (twinshoot)
     {
-      if (frameCount % (60/fireRate) == 0)
+      if (checkKey(bup) && checkKey(bright))
       {
-        Bullet bullet = new Bullet(1, pos.get(), PI/4, 0);
-        objects.add(bullet);
-      }
-    } else if (checkKey(bup) && checkKey(bleft))
-    {
-      if (frameCount % (60/fireRate) == 0)
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), PI/4, 0);
+          objects.add(bullet);
+        }
+      } else if (checkKey(bup) && checkKey(bleft))
       {
-        Bullet bullet = new Bullet(1, pos.get(), -(PI/4), 0);
-        objects.add(bullet);
-      }
-    } else if (checkKey(bdown) && checkKey(bright))
-    {
-      if (frameCount % (60/fireRate) == 0)
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), -(PI/4), 0);
+          objects.add(bullet);
+        }
+      } else if (checkKey(bdown) && checkKey(bright))
       {
-        Bullet bullet = new Bullet(1, pos.get(), PI/4 * 3, 0);
-        objects.add(bullet);
-      }
-    } else if (checkKey(bdown) && checkKey(bleft))
-    {
-      if (frameCount % (60/fireRate) == 0)
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), PI/4 * 3, 0);
+          objects.add(bullet);
+        }
+      } else if (checkKey(bdown) && checkKey(bleft))
       {
-        Bullet bullet = new Bullet(1, pos.get(), (PI/4) * 5, 0);
-        objects.add(bullet);
-      }
-    } else if (checkKey(bup))
-    {
-      if (frameCount % (60/fireRate) == 0)
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), (PI/4) * 5, 0);
+          objects.add(bullet);
+        }
+      } else if (checkKey(bup))
       {
-        Bullet bullet = new Bullet(1, pos.get(), 0, 0);
-        objects.add(bullet);
-      }
-    } else if (checkKey(bdown))
-    {
-      if (frameCount % (60/fireRate) == 0)
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), 0, 0);
+          objects.add(bullet);
+        }
+      } else if (checkKey(bdown))
       {
-        Bullet bullet = new Bullet(1, pos.get(), PI * 3, 0);
-        objects.add(bullet);
-      }
-    } else if (checkKey(bleft))
-    {
-      if (frameCount % (60/fireRate) == 0)
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), PI * 3, 0);
+          objects.add(bullet);
+        }
+      } else if (checkKey(bleft))
       {
-        Bullet bullet = new Bullet(1, pos.get(), PI/2 * 3, 0);
-        objects.add(bullet);
-      }
-    } else if (checkKey(bright))
-    {
-      if (frameCount % (60/fireRate) == 0)
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), PI/2 * 3, 0);
+          objects.add(bullet);
+        }
+      } else if (checkKey(bright))
       {
-        Bullet bullet = new Bullet(1, pos.get(), PI/2, 0);
-        objects.add(bullet);
+        if (frameCount % (60/fireRate) == 0)
+        {
+          Bullet bullet = new Bullet(1, pos.get(), PI/2, 0);
+          objects.add(bullet);
+        }
       }
     }
   }
