@@ -1,41 +1,45 @@
+import ddf.minim.*;
+AudioSnippet laser;
+AudioSnippet enemyLaser;
+AudioSnippet jump;
+AudioSnippet explosion;
+AudioSnippet enemy;
+Minim minim;
+
 boolean play = false;
 boolean gameOver = false;
+boolean ship = true;
+boolean twinshoot = true;
 int lives = 3;
 int score = 0;
 int oneUp = 10000;
-boolean ship = false;
 float angle;
-boolean twinshoot = true;
+float timer = 0;
 Level lvl;
-
-char up;
-char down;
-char left;
-char right;
-char start;
-char button1;
-char button2;
 
 ArrayList<GameObject> objects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[526];
-float timer = 0;
 
 void setup()
 {
-  size(1280, 1024);
+  minim = new Minim(this);
+  laser =  minim.loadSnippet("Laser.wav");
+  enemyLaser = minim.loadSnippet("enemyLaser.wav");
+  jump =  minim.loadSnippet("jump.wav");
+  explosion = minim.loadSnippet("Explosion.wav");
+  enemy = minim.loadSnippet("enemy.wav");
+  size(displayWidth, displayHeight);
   setUpPlayerControllers();
 }
 
 void draw()
 {
-
   if (!play && !gameOver)
   {
     reset();
     startScreen();
   } else if (play && !gameOver)
   {
-
     background(0);
     info();
 
@@ -66,8 +70,10 @@ void draw()
 
             //println("Radians???: " + radAngle + "   Degrees???: " +  DegAngle + 90);
 
-            if (frameCount % 120 == 0)
+            if (frameCount % 60 == 0)
             {
+              enemyLaser.rewind();
+              enemyLaser.play();
               Bullet bullet = new Bullet(2, eny.pos.get(), radAngle - PI/2, 0);
               objects.add(bullet);
             }
@@ -83,6 +89,7 @@ void draw()
 
     if (isEnemyAlive == false)
     {
+      enemy.pause();
       timer += 1.0f / 60.0f;
       if ( timer > 10)
       {
@@ -107,7 +114,6 @@ void draw()
 }
 void Respawn(GameObject player)
 {
-
   player.respawn = 0;
   player.pos.x = width/2; 
   player.pos.y = height/2;
@@ -191,6 +197,8 @@ void collision()
           {
             if (object1.collides(object2))
             {
+              explosion.rewind();
+              explosion.play();
               if (object2 instanceof Enemy || object2 instanceof Asteroid)
               {
                 for ( int k = 0; k < 10; k++)
@@ -257,7 +265,8 @@ void collision()
             {
               objects.add(new Explosion(Asteroids.pos.x + random(-5, 5), Asteroids.pos.y + random(-5, 5), 1) );
             }
-
+            explosion.rewind();
+            explosion.play();
             objects.remove(Asteroids);
 
             break;
@@ -280,6 +289,8 @@ void collision()
               {
                 objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 1) );
               }
+              explosion.rewind();
+              explosion.play();
               objects.remove(object1);
               score = score + 250;
             }

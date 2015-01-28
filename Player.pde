@@ -1,5 +1,11 @@
 class Player extends GameObject
 {
+  int index;
+  float fireRate = 5.0f;
+  float accelerate;
+  float rotate;
+  float power = 50;
+
   char up;
   char down;
   char left;
@@ -11,12 +17,6 @@ class Player extends GameObject
   char bdown;
   char bleft;
   char bright;
-  int index;
-  float fireRate = 5.0f;
-  float accelerate;
-  float rotate;
-  float power = 50;
-
 
   Player()
   {
@@ -67,12 +67,12 @@ class Player extends GameObject
   {
     if (ship)
     {
-      accelerate = 0.1f;
-      rotate = 0.12f;
+      accelerate = 0.05f;
+      rotate = 0.08f;
     } else
     {
-      accelerate = 0.15f;
-      rotate = 0.1f;
+      accelerate = 0.1f;
+      rotate = 0.04f;
     }
 
     if (power < 50)
@@ -85,7 +85,7 @@ class Player extends GameObject
 
     if (checkKey(up))
     {
-      if (speed < 10)
+      if (speed < 7)
       {
         speed = speed + accelerate;
       }
@@ -122,7 +122,7 @@ class Player extends GameObject
 
     if (checkKey(start))
     {
-      println("Player " + index + " start");
+      //println("Player " + index + " start");
     }
     if (!twinshoot)
     {
@@ -140,8 +140,15 @@ class Player extends GameObject
     {
       if (power >= 50)
       {
+        jump.rewind();
+        jump.play();
         PVector jump = PVector.mult(forward, 200);
         pos.add(jump);
+
+        for ( int k = 0; k < 100; k++)
+        {
+          objects.add(new Explosion(pos.x + random(-5, 5), pos.y + random(-5, 5), 2) );
+        }
         power = 0;
       }
     }
@@ -151,6 +158,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), PI/4, 0);
           objects.add(bullet);
         }
@@ -158,6 +167,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), -(PI/4), 0);
           objects.add(bullet);
         }
@@ -165,6 +176,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), PI/4 * 3, 0);
           objects.add(bullet);
         }
@@ -172,6 +185,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), (PI/4) * 5, 0);
           objects.add(bullet);
         }
@@ -179,6 +194,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), 0, 0);
           objects.add(bullet);
         }
@@ -186,6 +203,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), PI * 3, 0);
           objects.add(bullet);
         }
@@ -193,6 +212,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), PI/2 * 3, 0);
           objects.add(bullet);
         }
@@ -200,6 +221,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), PI/2, 0);
           objects.add(bullet);
         }

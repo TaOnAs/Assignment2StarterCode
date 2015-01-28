@@ -5,24 +5,24 @@ float halfHeight = h / 2;
 
 void startScreen()
 {
-  
+
   background(0);
   textSize(displayWidth/20);
   fill(255);
-  text("Asteroids", width/3, height/8, (width/3 * 2), height/8); 
+  text("Asteroids", width/2 - 200, height/8, (width/3), height/8); 
 
   textSize(displayWidth/80);
-  text("Ship select", width/6, height/2, width/4, height/2);
+  text("Ship select", width/2 - 50, height/3, width/4, height/3);
 
-  int x = width/6;
-  int y = height/2 + 60;
+  int x = width/2 - 60;
+  int y = height/3 + 80 ;
   stroke(255);
   line(x - halfWidth, y + halfHeight, x, y - halfHeight);
   line(x, y - halfHeight, x + halfWidth, y + halfHeight);
   line(x - halfWidth + 4, y + halfHeight - 6, x + halfWidth - 4, y + halfHeight - 6);
 
-  x = width / 4;
-  y = height/2 + 60;
+  x = width/2 + 60;
+  y = height/3 + 80;
 
   line(x - halfWidth, y + halfHeight, x + halfWidth, y + halfHeight);
   line(x + halfWidth, y + halfHeight, x + halfWidth, y);
@@ -36,24 +36,25 @@ void startScreen()
   line(x + halfWidth/2, y + halfHeight + 4, x + halfWidth/2, y + halfHeight);
 
   textSize(12);
-  x = width/7 + 10;
-  y = height/2 + 130;
+  x = width/2 - 70;
+  y = height/3 + 130;
   if (ship)
   {
-    text("This ship has greater turning but slower acceleration", x, y, x, y + 50);
+    text("This ship has greater turning but slower acceleration", x, y, 200, y + 50);
   } else
   {
-    text("This ship has greater acceleration but slower turning", x, y, x, y + 50);
-    x = width/4 - 20; 
-    y = height/2 + 130;
+    text("This ship has greater acceleration but slower turning", x, y, 200, y + 50);
+    x = width/2 + 50; 
+    y = height/3 + 130;
   }
-  fill(0, 0, 255);
-  triangle(x, y, x + 20, y - 40, x + 40, y);
+  fill(255);
+  triangle(x, y, x + 10, y - 20, x + 20, y);
 
-  x = width/6 - 20; 
-  y = height/2 + 200;
+  x = width/2 - 60; 
+  y = height/3 + 180;
   fill(255);
   text("Twin Stick Shooting:", x, y);
+  text("Toggle with button2 or 'r'", x, y+20);
   if (twinshoot)
   {
     fill(0, 255, 0);
@@ -63,11 +64,18 @@ void startScreen()
     fill(255, 0, 0);
     text("Disabled", x + 120, y);
   }
+
+  textSize(32);
+  fill(0, 255, 0);
+  x = width/2;
+  y = height/4*3;
+  text("Press Button1 or 'e' to Start", x - 200, y, x, y);
+
   timer = timer - 1.0f / 60.0f;
   if (keyPressed)
   {
     //starts the game
-    if ( key == ENTER)
+    if ( key == 'e' && timer < 0)
     {
       play = true;
       gameOver = false;
@@ -82,13 +90,11 @@ void startScreen()
     {
       ship = false;
     }
-    if (timer < 0)
+
+    if ( key == 'r' && timer < 0)
     {
-      if ( key == 'r')
-      {
-        twinshoot = !twinshoot;
-        timer = .5;
-      }
+      twinshoot = !twinshoot;
+      timer = .5;
     }
   }
 }
@@ -126,18 +132,19 @@ void gameOver()
   textSize(50);
   fill(255, 0, 0);
   text("GAME   OVER", x-150, y); 
-  text(score, x-45, 200);
+  text(score, x, 200);
 
   textSize(20);
-  text("Press 'Enter' to Conitinue", 150, height - 100);
+  text("Press button1 or e to Conitinue", x - 140, height - 100);
 
   if (keyPressed)
   {
     //goes back to the main menu
-    if (key == 'q' || key == 'Q')
+    if (key == 'e')
     {
       play = false;
       gameOver = false;
+      timer = 0.5;
     }
   }
 }

@@ -19,21 +19,20 @@ class Enemy extends GameObject
       theta = - (PI / 2);
       this.type = -1;
     }
-
     w = 35;
     h = 15;
-    speed = 1;
+    speed = 3;
+    enemy.loop();
   }
 
   void update()
   {
     forward.x = sin(theta);
     forward.y = -cos(theta);
-
     PVector velocity = PVector.mult(forward, speed);
     pos.add(velocity);
 
-    if (frameCount % 120 == 0)
+    if (frameCount % 60 == 0)
     {
       int t = (int) random(0, 3);
       if ( t == 0)
