@@ -253,7 +253,7 @@ class Player extends GameObject
       line(-halfWidth, halfHeight, 0, - halfHeight);
       line(0, - halfHeight, halfWidth, halfHeight);
       line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
-      if (checkKey(up))    //draw thrust
+      if (checkKey(up) && (frameCount % 3 > 0))    //draw thrust
       {
         line(-w/4, halfHeight - 6, 0, halfHeight + 4);
         line(0, halfHeight + 4, w/4, halfHeight-6);
@@ -275,7 +275,7 @@ class Player extends GameObject
       line(-halfWidth/2, halfHeight, -halfWidth/2, halfHeight + 4);
       line(-halfWidth/2, halfHeight + 4, halfWidth/2, halfHeight + 4);
       line(halfWidth/2, halfHeight + 4, halfWidth/2, halfHeight);
-      if (checkKey(up))
+      if (checkKey(up) && (frameCount % 3 > 0))
       {
         line(-halfWidth/2, halfHeight + 4, 0, halfHeight + 8);
         line(0, halfHeight + 8, halfWidth/2, halfHeight + 4);

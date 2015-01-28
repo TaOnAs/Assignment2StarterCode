@@ -35,6 +35,8 @@ class Bullet extends GameObject
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
+    
+    strokeWeight(2);
     if (friendly == 1)
     {
       stroke(color(0, 0, 255));
@@ -43,6 +45,7 @@ class Bullet extends GameObject
       stroke(color(255, 0, 0));
     }
     line(0, -2, 0, 2); 
+    strokeWeight(1);
     stroke(255);
     popMatrix();
 
