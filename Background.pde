@@ -5,7 +5,6 @@ float halfHeight = h / 2;
 
 void startScreen()
 {
-
   background(0);
   textSize(80);
   fill(255);

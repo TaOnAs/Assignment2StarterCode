@@ -3,7 +3,7 @@ class Asteroid extends GameObject
   int s;        //determines the look of the asteroid
   float theta2; //rotates the asteoids without effecting there path
   int dir;      //sets direction of rotation
-  
+
   Asteroid()
   {
     this(random(0, width), random(0, height), 3);
@@ -15,9 +15,9 @@ class Asteroid extends GameObject
     theta = random(0, TWO_PI);
     level = _level;
     speed = random(2, 7); 
-    s = 1;
+    s = (int) random(-1,4);
 
-    
+
     if (level == 3)    //sets size of the asteroid
     {
       w = 60;
@@ -28,10 +28,10 @@ class Asteroid extends GameObject
       h = 30;
     } else
     {
-      w = 15;
-      h = 15;
+      w = 20;
+      h = 20;
     }
-    
+
     dir = (int) random(-2, 2); //calcualtes if the asteroid will rotate clockwise or anti clockwise
     if (dir == 0)
     {
@@ -44,7 +44,7 @@ class Asteroid extends GameObject
     forward.x = sin(theta);
     forward.y = -cos(theta);
     PVector velocity = PVector.mult(forward, speed);
-    pos.add(velocity);    
+    pos.add(velocity);
   }
 
   void display()
@@ -53,7 +53,7 @@ class Asteroid extends GameObject
     translate(pos.x, pos.y);
     rotate(theta2);
     theta2 = theta2 + random(0.005, 0.01) * dir;  //calculates the rotation of the asteroid
-    
+
     stroke(255);
     float halfWidth = w / 2;
     float halfHeight = h / 2;    
@@ -62,7 +62,16 @@ class Asteroid extends GameObject
 
     if (s==0)      //draws the selected asteroid
     {
-      line( -5, 0, 5, 0);
+      line(-halfWidth, 0, -halfWidth + 5, halfHeight/2);
+      line(-halfWidth + 5, halfHeight/2, -halfWidth/2, halfHeight/4 * 3);
+      line(-halfWidth/2, halfHeight/4 * 3, 0, halfHeight);
+      line(0, halfHeight, halfWidth/4, halfHeight/2);
+      line(halfWidth/4, halfHeight/2, halfWidth, 0);
+      line(halfWidth, 0, halfWidth/4, - halfHeight /2);
+      line(halfWidth/4, - halfHeight /2, 0, - halfHeight);
+      line(0, - halfHeight, -halfWidth / 2, -halfHeight);
+      line(-halfWidth / 2, -halfHeight, -halfWidth, -halfHeight/2);
+      line(-halfWidth, -halfHeight/2, -halfWidth, 0);
     } else if (s==1)
     {
       //ellipse(0, 0, w, h);
@@ -93,6 +102,19 @@ class Asteroid extends GameObject
       line(0, -h/8, - halfWidth, 0);
     } else if (s==3)
     {
+      line(-halfWidth, 0, -halfWidth/4 * 3, halfHeight/4);
+      line(-halfWidth/4 * 3, halfHeight/4, -halfWidth/3, halfHeight/2);
+      line(-halfWidth/3, halfHeight/2, -halfWidth/2, halfHeight/3 * 4);
+      line(-halfWidth/2, halfHeight/3 * 4, 0, halfHeight);
+      line(0, halfHeight, halfWidth/2, halfHeight);
+      line(halfWidth/2, halfHeight, halfWidth/3 * 2 -5, halfHeight/2);
+      line(halfWidth/3 * 2 - 5, halfHeight/2, halfWidth, 0);
+      line(halfWidth, 0, halfWidth/4 * 3, - halfHeight/4);
+      line(halfWidth/4 * 3, - halfHeight/4, halfWidth/2, -halfHeight/2);
+      line(halfWidth/2, -halfHeight/2, halfWidth/4, -halfHeight/4 * 3);
+      line(halfWidth/4, -halfHeight/4 * 3, 0, -halfHeight);
+      line(0, -halfHeight, -halfWidth/8, -halfHeight/2);
+      line(-halfWidth/8, -halfHeight/2, -halfWidth, 0);
     }
     popMatrix();
 
