@@ -1,7 +1,7 @@
 class Explosion extends GameObject
 {
-  float tAlive = 1.0f;
-  int type;
+  float tAlive = 1.0f;     //controls the duration of the explosion
+  int type;                //controls the explosion type
 
   Explosion()
   {
@@ -12,7 +12,7 @@ class Explosion extends GameObject
     this.pos.x = posx;
     this.pos.y = posy; 
     this.type = type;
-    theta = random(0, TWO_PI);
+    theta = random(0, TWO_PI);    //creates random direction for each particle
   }
 
   void update()
@@ -34,7 +34,7 @@ class Explosion extends GameObject
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
-    if (type == 1)
+    if (type == 1)    //controls the explosion type
     {
       point(0, 0);
     } else

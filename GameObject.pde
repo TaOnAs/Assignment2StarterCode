@@ -1,17 +1,17 @@
 class GameObject
 {
-  PVector pos;
-  PVector forward;
+  PVector pos;        //holds object positions
+  PVector forward;    //holds objects direction
   color colour;
   float w, h;
-  float theta;
+  float theta;        //hold rotation angle
   float speed;
   float born = 0.0f;
-  float timeDelta = 1.0f / 60.0f;
+  float timeDelta = 1.0f / 60.0f;  // 1 second timer
   boolean alive;  
   int level;
   float respawn = 0;
-  int friendly = 0;
+  int friendly = 0;    //used for enemy and friendly bullets to differentiate which is which
   
   
   

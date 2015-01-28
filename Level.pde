@@ -18,9 +18,9 @@ class Level
 
 
     //int NumberOfAsteroids =  children[currentLevel].getInt("asteroids");
-    int NumberOfAsteroids =  Integer.parseInt(children[currentLevel].getContent().trim());
+    int NumberOfAsteroids =  Integer.parseInt(children[currentLevel].getContent().trim()); //reads the xml file levels and gets the current level and returns the number of asteroids
     //println(NumberOfAsteroids);
-    for (int i = 0; i < NumberOfAsteroids; i++)
+    for (int i = 0; i < NumberOfAsteroids; i++)    //draws asteroids based on the number returned from the xml file
     {
       Asteroid a = new Asteroid();
       objects.add(a);
@@ -30,14 +30,13 @@ class Level
 
   void NextLevel()
   {
-    currentLevel++;
-    if (currentLevel > numberOfLevels)
+    currentLevel++;                       //increment the level
+    if (currentLevel > numberOfLevels)    //if there are no more levels display the gameover screen
     {
       gameOver = true;
     } else
     {
-      //TO DO show level on screen
-      int NumberOfAsteroids =  Integer.parseInt(children[currentLevel].getContent().trim());
+      int NumberOfAsteroids =  Integer.parseInt(children[currentLevel].getContent().trim()); //get the next level data from the xml file
       for (int i = 0; i < NumberOfAsteroids; i++)
       {
         Asteroid a = new Asteroid();

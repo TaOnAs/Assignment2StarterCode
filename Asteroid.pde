@@ -1,8 +1,9 @@
 class Asteroid extends GameObject
 {
-  int s;
-  float theta2;
-  int dir;
+  int s;        //determines the look of the asteroid
+  float theta2; //rotates the asteoids without effecting there path
+  int dir;      //sets direction of rotation
+  
   Asteroid()
   {
     this(random(0, width), random(0, height), 3);
@@ -14,7 +15,10 @@ class Asteroid extends GameObject
     theta = random(0, TWO_PI);
     level = _level;
     speed = random(2, 7); 
-    if (level == 3)
+    s = 1;
+
+    
+    if (level == 3)    //sets size of the asteroid
     {
       w = 60;
       h = 60;
@@ -27,21 +31,20 @@ class Asteroid extends GameObject
       w = 15;
       h = 15;
     }
-    dir = (int) random(-2, 2);
+    
+    dir = (int) random(-2, 2); //calcualtes if the asteroid will rotate clockwise or anti clockwise
     if (dir == 0)
     {
       dir = 1;
     }
   }
 
-  void update()
+  void update() //changes the position of the asteroid
   {
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    s = 1;
-
     PVector velocity = PVector.mult(forward, speed);
-    pos.add(velocity);
+    pos.add(velocity);    
   }
 
   void display()
@@ -49,15 +52,15 @@ class Asteroid extends GameObject
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta2);
-
-    theta2 = theta2 + random(0.005, 0.01) * dir;
+    theta2 = theta2 + random(0.005, 0.01) * dir;  //calculates the rotation of the asteroid
+    
     stroke(255);
     float halfWidth = w / 2;
     float halfHeight = h / 2;    
 
     noFill();
 
-    if (s==0)
+    if (s==0)      //draws the selected asteroid
     {
       line( -5, 0, 5, 0);
     } else if (s==1)
@@ -93,7 +96,7 @@ class Asteroid extends GameObject
     }
     popMatrix();
 
-    if (pos.x > width)
+    if (pos.x > width)      //keeps the asteroid on the screen
     {
       pos.x = 0;
     } else if (pos.x < 0)

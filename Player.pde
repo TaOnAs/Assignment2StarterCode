@@ -4,8 +4,9 @@ class Player extends GameObject
   float fireRate = 5.0f;
   float accelerate;
   float rotate;
-  float power = 50;
+  float power = 50;  //used for jump
 
+  //button mappings
   char up;
   char down;
   char left;
@@ -65,17 +66,17 @@ class Player extends GameObject
 
   void update()
   {
-    if (ship)
+    if (ship)  //if ship is true set these stats for the player
     {
       accelerate = 0.05f;
       rotate = 0.08f;
-    } else
+    } else    //otherwise set these stats
     {
       accelerate = 0.1f;
       rotate = 0.04f;
     }
 
-    if (power < 50)
+    if (power < 50)    //increment power if its less then 50
     {
       power += timeDelta;
     }
@@ -85,20 +86,20 @@ class Player extends GameObject
 
     if (checkKey(up))
     {
-      if (speed < 7)
+      if (speed < 7)    //increase speed if up is pressed and speed is less then 7
       {
         speed = speed + accelerate;
       }
       PVector velocity = PVector.mult(forward, speed);
-      pos.add(velocity);
+      pos.add(velocity); //move the player
     } else
     {
-      if (speed > 0)
+      if (speed > 0)  //decrease speed if up is not pressed and speed is greater then 0
       {
         speed = speed - 0.05;
         PVector velocity = PVector.mult(forward, speed);
         pos.add(velocity);
-      } else
+      } else  //otherwise dont change the position
       {
         pos.x = pos.x;
         pos.y = pos.y;
@@ -124,7 +125,7 @@ class Player extends GameObject
     {
       //println("Player " + index + " start");
     }
-    if (!twinshoot)
+    if (!twinshoot)  //if twinshoot is disabled map shooting to button1 
     {
       if (checkKey(button1))
       {
@@ -138,7 +139,7 @@ class Player extends GameObject
       }
     }
 
-    if (checkKey(button2))
+    if (checkKey(button2)) //jump 200 units forward
     {
       if (power >= 50)
       {
@@ -147,16 +148,16 @@ class Player extends GameObject
         PVector jump = PVector.mult(forward, 200);
         pos.add(jump);
 
-        for ( int k = 0; k < 100; k++)
+        for ( int k = 0; k < 100; k++)  //display animation
         {
           objects.add(new Explosion(pos.x + random(-5, 5), pos.y + random(-5, 5), 2) );
         }
         power = 0;
       }
     }
-    if (twinshoot)
+    if (twinshoot)  //if twinshooting is enabled
     {
-      if (checkKey(bup) && checkKey(bright))
+      if (checkKey(bup) && checkKey(bright))    //shoot diagonally up and right
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -165,7 +166,7 @@ class Player extends GameObject
           Bullet bullet = new Bullet(1, pos.get(), PI/4, 0);
           objects.add(bullet);
         }
-      } else if (checkKey(bup) && checkKey(bleft))
+      } else if (checkKey(bup) && checkKey(bleft)) //shoot diagonally up and left
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -174,7 +175,7 @@ class Player extends GameObject
           Bullet bullet = new Bullet(1, pos.get(), -(PI/4), 0);
           objects.add(bullet);
         }
-      } else if (checkKey(bdown) && checkKey(bright))
+      } else if (checkKey(bdown) && checkKey(bright)) //shoot diagonally down and right
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -183,7 +184,7 @@ class Player extends GameObject
           Bullet bullet = new Bullet(1, pos.get(), PI/4 * 3, 0);
           objects.add(bullet);
         }
-      } else if (checkKey(bdown) && checkKey(bleft))
+      } else if (checkKey(bdown) && checkKey(bleft))  //shoot diagonally down and left
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -192,7 +193,7 @@ class Player extends GameObject
           Bullet bullet = new Bullet(1, pos.get(), (PI/4) * 5, 0);
           objects.add(bullet);
         }
-      } else if (checkKey(bup))
+      } else if (checkKey(bup))                      //shoot up
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -201,7 +202,7 @@ class Player extends GameObject
           Bullet bullet = new Bullet(1, pos.get(), 0, 0);
           objects.add(bullet);
         }
-      } else if (checkKey(bdown))
+      } else if (checkKey(bdown))                    //shoot down
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -210,7 +211,7 @@ class Player extends GameObject
           Bullet bullet = new Bullet(1, pos.get(), PI * 3, 0);
           objects.add(bullet);
         }
-      } else if (checkKey(bleft))
+      } else if (checkKey(bleft))                  //shoot left
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -219,7 +220,7 @@ class Player extends GameObject
           Bullet bullet = new Bullet(1, pos.get(), PI/2 * 3, 0);
           objects.add(bullet);
         }
-      } else if (checkKey(bright))
+      } else if (checkKey(bright))                //shoot right
       {
         if (frameCount % (60/fireRate) == 0)
         {
@@ -240,11 +241,11 @@ class Player extends GameObject
 
     stroke(colour);
     float halfWidth = w / 3;
-    float  halfHeight = h / 2;    
+    float halfHeight = h / 2;    
 
-    if (ship)
+    if (ship)  //if ship is true draw ship 1
     {
-      if (respawn < 2)
+      if (respawn < 2)  // if ship is just made draw a shiled for 2 seconds to indicate invincibility
       {
         noFill();
         ellipse(0, 0, w + 10, h + 10);
@@ -252,12 +253,12 @@ class Player extends GameObject
       line(-halfWidth, halfHeight, 0, - halfHeight);
       line(0, - halfHeight, halfWidth, halfHeight);
       line(-halfWidth + 4, halfHeight - 6, halfWidth - 4, halfHeight - 6);
-      if (checkKey(up))
+      if (checkKey(up))    //draw thrust
       {
         line(-w/4, halfHeight - 6, 0, halfHeight + 4);
         line(0, halfHeight + 4, w/4, halfHeight-6);
       }
-    } else
+    } else  //draw ship 2
     {
       if (respawn < 2)
       {
@@ -282,7 +283,7 @@ class Player extends GameObject
     }
     popMatrix();
 
-    if (power >= 50)
+    if (power >= 50)  //draw the power bar if its full set fill to 255
     {
       fill(255);
     } else

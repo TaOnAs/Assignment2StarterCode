@@ -17,13 +17,15 @@ void startScreen()
   int x = width/2 - 60;
   int y = height/3 + 80 ;
   stroke(255);
+  //draws ship 1
   line(x - halfWidth, y + halfHeight, x, y - halfHeight);
   line(x, y - halfHeight, x + halfWidth, y + halfHeight);
   line(x - halfWidth + 4, y + halfHeight - 6, x + halfWidth - 4, y + halfHeight - 6);
 
   x = width/2 + 60;
   y = height/3 + 80;
-
+  
+  //draws ship 2
   line(x - halfWidth, y + halfHeight, x + halfWidth, y + halfHeight);
   line(x + halfWidth, y + halfHeight, x + halfWidth, y);
   line(x + halfWidth, y, x + halfWidth/2, y - halfHeight/2);
@@ -47,6 +49,8 @@ void startScreen()
     x = width/2 + 50; 
     y = height/3 + 130;
   }
+  
+  //draws selector arrow
   fill(255);
   triangle(x, y, x + 10, y - 20, x + 20, y);
 
@@ -55,7 +59,8 @@ void startScreen()
   fill(255);
   text("Twin Stick Shooting:", x, y);
   text("Toggle with button2 or 'r'", x, y+20);
-  if (twinshoot)
+  
+  if (twinshoot)      //toggles twin shooting
   {
     fill(0, 255, 0);
     text("Enabled", x + 120, y);
@@ -108,15 +113,15 @@ void info()
   textSize(20);
   fill(255);
   text(score, x, y2);
-  text(lvl.currentLevel, width/2, height/24);
+  text(lvl.currentLevel, width/2, height/24);    //displays current level
 
-  if (score > oneUp)
+  if (score > oneUp)                             //adds an extra life every 10000 points
   {
     lives++;
     oneUp = oneUp + oneUp;
   }
 
-  for ( int i = 0; i < lives; i++)
+  for ( int i = 0; i < lives; i++)              //draws remaining lives
   {
     line(x + -halfWidth + (dist * i), y + halfHeight, x + 0 + (dist * i), y - halfHeight);
     line(x + 0 + (dist * i), y - halfHeight, x + halfWidth + (dist * i), y +halfHeight);
@@ -132,7 +137,7 @@ void gameOver()
   textSize(50);
   fill(255, 0, 0);
   text("GAME   OVER", x-150, y); 
-  text(score, x, 200);
+  text(score, x - 50, 200);
 
   textSize(20);
   text("Press button1 or e to Conitinue", x - 140, height - 100);
