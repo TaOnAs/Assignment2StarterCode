@@ -203,7 +203,7 @@ void collision()    //collsion detection for all objects
         if (object2 instanceof Asteroid || object2 instanceof Bullet || object2 instanceof Enemy)
         {
           //println("check player at " + object1.pos.x + " " + object1.pos.y + " Asteroid: " + object2.pos.x + " " + object2.pos.y);
-          if (object2.friendly != 1 && object1.respawn > 2)    //if object2 isnt friendly to the player (object1)
+          if (object2.friendly != 1 && object1.respawn > 2)    //if object2 isnt friendly to the player (object1) abd player2 has been alive for longer then 2 seconds
           {
             if (object1.collides(object2))
             {

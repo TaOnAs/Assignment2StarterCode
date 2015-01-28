@@ -36,7 +36,7 @@ class Bullet extends GameObject
     translate(pos.x, pos.y);
     rotate(theta);
     
-    strokeWeight(2);
+    strokeWeight(3);
     if (friendly == 1)
     {
       stroke(color(0, 0, 255));
