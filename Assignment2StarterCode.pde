@@ -127,7 +127,6 @@ void Respawn(GameObject player)     //Respawns the player in the centre of the s
   player.pos.x = width/2; 
   player.pos.y = height/2;
   player.speed = 0;
-
   //respawn animation
   for ( int k = 0; k < 100; k++)
   {

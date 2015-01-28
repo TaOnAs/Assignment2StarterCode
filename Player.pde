@@ -4,7 +4,7 @@ class Player extends GameObject
   float fireRate = 5.0f;
   float accelerate;
   float rotate;
-  float power = 50;  //used for jump
+  float power = 30;  //used for jump
 
   //button mappings
   char up;
@@ -76,7 +76,7 @@ class Player extends GameObject
       rotate = 0.04f;
     }
 
-    if (power < 50)    //increment power if its less then 50
+    if (power < 30)    //increment power if its less then 50
     {
       power += timeDelta;
     }
@@ -141,16 +141,23 @@ class Player extends GameObject
 
     if (checkKey(button2)) //jump 200 units forward
     {
-      if (power >= 50)
+      if (power >= 30)
       {
-        jump.rewind();
-        jump.play();
-        PVector jump = PVector.mult(forward, 200);
-        pos.add(jump);
-
-        for ( int k = 0; k < 100; k++)  //display animation
+        if (ship)
         {
-          objects.add(new Explosion(pos.x + random(-5, 5), pos.y + random(-5, 5), 2) );
+          jump.rewind();
+          jump.play();
+          PVector jump = PVector.mult(forward, 200);
+          pos.add(jump);
+
+          for ( int k = 0; k < 100; k++)  //display animation
+          {
+            objects.add(new Explosion(pos.x + random(-5, 5), pos.y + random(-5, 5), 2) );
+          }
+        }
+        else
+        {
+         respawn = -1; 
         }
         power = 0;
       }
@@ -283,7 +290,7 @@ class Player extends GameObject
     }
     popMatrix();
 
-    if (power >= 50)  //draw the power bar if its full set fill to 255
+    if (power >= 30)  //draw the power bar if its full set fill to 255
     {
       fill(255);
     } else

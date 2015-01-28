@@ -41,10 +41,10 @@ void startScreen()
   y = height/3 + 130;
   if (ship)
   {
-    text("This ship has greater turning but slower acceleration", x, y, 200, y + 50);
+    text("This ship has greater turning but slower acceleration \n Press button2 or r to warp", x, y, 200, y + 50);
   } else
   {
-    text("This ship has greater acceleration but slower turning", x, y, 200, y + 50);
+    text("This ship has greater acceleration but slower turning \n Press button2 or r to shield", x, y, 200, y + 50);
     x = width/2 + 50; 
     y = height/3 + 130;
   }
@@ -53,8 +53,8 @@ void startScreen()
   fill(255);
   triangle(x, y, x + 10, y - 20, x + 20, y);
 
-  x = width/2 - 60; 
-  y = height/3 + 180;
+  x = width/2 - 70; 
+  y = height/3 + 220;
   fill(255);
   text("Twin Stick Shooting:", x, y);
   text("Toggle with button2 or 'r'", x, y+20);
