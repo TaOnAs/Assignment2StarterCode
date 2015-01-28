@@ -11,10 +11,11 @@ class GameObject
   boolean alive;  
   int level;
   float respawn = 0;
+  float power = 30;  //used for jump
   int friendly = 0;    //used for enemy and friendly bullets to differentiate which is which
-  
-  
-  
+
+
+
   GameObject()
   {
     alive = true;

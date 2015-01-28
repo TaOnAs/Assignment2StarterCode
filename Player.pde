@@ -4,7 +4,6 @@ class Player extends GameObject
   float fireRate = 5.0f;
   float accelerate;
   float rotate;
-  float power = 30;  //used for jump
 
   //button mappings
   char up;
@@ -154,10 +153,9 @@ class Player extends GameObject
           {
             objects.add(new Explosion(pos.x + random(-5, 5), pos.y + random(-5, 5), 2) );
           }
-        }
-        else
+        } else
         {
-         respawn = -1; 
+          respawn = -1;
         }
         power = 0;
       }

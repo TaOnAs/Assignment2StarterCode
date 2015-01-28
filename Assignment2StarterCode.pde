@@ -127,6 +127,7 @@ void Respawn(GameObject player)     //Respawns the player in the centre of the s
   player.pos.x = width/2; 
   player.pos.y = height/2;
   player.speed = 0;
+  player.power = 30;
   //respawn animation
   for ( int k = 0; k < 100; k++)
   {
@@ -221,9 +222,11 @@ void collision()    //collsion detection for all objects
               {
                 objects.add(new Explosion(object1.pos.x + random(-5, 5), object1.pos.y + random(-5, 5), 2) );
               }
+             
+              Respawn(object1);    //respawn the player in the centre of the screen if there is a life left
+
               if (lives > 0)
               {
-                Respawn(object1);    //respawn the player in the centre of the screen if there is a life left
                 lives--;
               } else                 //display the game over screen
               {
