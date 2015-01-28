@@ -31,7 +31,7 @@ class Level
   void NextLevel()
   {
     currentLevel++;                       //increment the level
-    if (currentLevel > numberOfLevels)    //if there are no more levels display the gameover screen
+    if (currentLevel > numberOfLevels - 1)    //if there are no more levels display the gameover screen
     {
       gameOver = true;
     } else

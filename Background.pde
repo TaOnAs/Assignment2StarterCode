@@ -117,7 +117,7 @@ void info()
   if (score > oneUp)                             //adds an extra life every 10000 points
   {
     lives++;
-    oneUp = oneUp + oneUp;
+    oneUp = oneUp + 10000;
   }
 
   for ( int i = 0; i < lives; i++)              //draws remaining lives
