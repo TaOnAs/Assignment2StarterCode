@@ -35,7 +35,15 @@ class Bullet extends GameObject
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
+    if (friendly == 1)
+    {
+      stroke(color(0, 0, 255));
+    } else
+    {
+      stroke(color(255, 0, 0));
+    }
     line(0, -2, 0, 2); 
+    stroke(255);
     popMatrix();
 
     //keeps bullets on the screen
