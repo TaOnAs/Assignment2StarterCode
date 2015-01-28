@@ -33,7 +33,7 @@ class Level
     currentLevel++;
     if (currentLevel > numberOfLevels)
     {
-      //Go to GAME COMPLETE SCREEN
+      gameOver = true;
     } else
     {
       //TO DO show level on screen

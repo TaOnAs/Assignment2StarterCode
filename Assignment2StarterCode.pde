@@ -32,6 +32,10 @@ void setup()
   setUpPlayerControllers();
 }
 
+boolean sketchFullScreen() {
+  return true;
+}
+
 void draw()
 {
   if (!play && !gameOver)

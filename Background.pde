@@ -7,9 +7,9 @@ void startScreen()
 {
 
   background(0);
-  textSize(displayWidth/20);
+  textSize(80);
   fill(255);
-  text("Asteroids", width/2 - 200, height/8, (width/3), height/8); 
+  text("Asteroids", width/2 - 180, height/8, (width/3), height/8); 
 
   textSize(displayWidth/80);
   text("Ship select", width/2 - 50, height/3, width/4, height/3);

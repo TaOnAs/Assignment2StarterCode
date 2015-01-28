@@ -130,6 +130,8 @@ class Player extends GameObject
       {
         if (frameCount % (60/fireRate) == 0)
         {
+          laser.rewind();
+          laser.play();
           Bullet bullet = new Bullet(1, pos.get(), theta, 0);
           objects.add(bullet);
         }
